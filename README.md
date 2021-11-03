@@ -5,11 +5,11 @@ of numbers. \
 
 ## Table of contents
 
-[Introduction](#introduction)
-[What are push_swap instructions](#what-are-push_swap-instructions)
-[Usage of push_Swap](#usage-of-push_swap)
- - [Compiling](#compiling)
- - [Using push_swap to sort a stack](#using-push_swap-to-sort-a-stack)
+ - [Introduction](#introduction)
+ - [What are push_swap instructions](#what-are-push_swap-instructions)
+ - [Usage of push_Swap](#usage-of-push_swap)
+ - - [Compiling](#compiling)
+ - - [Using push_swap to sort a stack](#using-push_swap-to-sort-a-stack)
 
 ## Introduction
 
