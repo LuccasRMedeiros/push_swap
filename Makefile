@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/11/03 12:07:59 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/11/06 16:11:46 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,19 @@ define PUSHSWAP
 endef
 export PUSHSWAP
 
-CC = clang-13
+CC = clang
 
 FLAGS = -Wall -Werror -Wextra -g
 
-all:
+DEPS = -L libs/libft/ -lft \
+
+INC = -I ./libs/libft/ \
+
+all: makelibft
 	echo "$$PUSHSWAP"
+
+clean:
+	make -C ./libs/libft clean
+
+makelibft:
+	make -C ./libs/libft all
