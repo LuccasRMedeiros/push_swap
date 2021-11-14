@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_swaps_sb.c                               :+:      :+:    :+:   */
+/*   push_swap_moves_pa.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 01:34:09 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 01:38:45 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/11 14:22:54 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/11 17:14:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_swaps.h"
+#include "push_swap_moves.h"
 
 /*
-** Execute a sb (swap the two items at the top of stack b).
+** Push the top item on stack A to the top of stack B.
 */
 
-void	push_swap_swaps_sb(t_dlist *stack_b)
+void	push_swap_moves_pa(t_dlist *stack_a, t_dlist *stack_b)
 {
-	void	*aux;
-
-	aux = stack_b->content;
-	stack_b->content = stack_b->next->content;
-	stack_b->next->content = aux;
-	printf("sb\n");
+	ft_dlstinsert(stack_a->content, stack_b);
+	ft_dlstdelone_circle(stack_a);
+	printf("pa");
 }

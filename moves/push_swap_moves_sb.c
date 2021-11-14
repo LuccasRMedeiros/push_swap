@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_moves_sb.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 23:29:36 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/11 01:34:09 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/11 17:14:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap_moves.h"
+
 /*
-** Contain the base for all the program. Its dependencies, structures, enums, 
-** unions and macros are declared here.
+** Swap the two items at the top of stack B.
 */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+void	push_swap_moves_sb(t_dlist *stack_b)
+{
+	void	*aux;
 
-# define STACK_A 0
-# define STACK_B 1
-
-# include <libft.h>
-
-#endif
+	aux = stack_b->content;
+	stack_b->content = stack_b->next->content;
+	stack_b->next->content = aux;
+	printf("sb\n");
+}

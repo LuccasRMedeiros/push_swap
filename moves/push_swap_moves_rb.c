@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_swaps_sa.c                               :+:      :+:    :+:   */
+/*   push_swap_moves_rb.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 01:38:45 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/11 16:04:16 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/11 23:35:44 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_swaps.h"
+#include "push_swap_moves.h"
 
 /*
-** Execute a sa (swap the two items at the top of stack a).
+** Shift up all the items in the stack by one.
 */
 
-void	push_swap_swaps_sa(t_dlist *stack_a)
+void	push_swap_moves_rb(t_dlist **stack_b)
 {
-	void	*aux;
-
-	aux = stack_a->content;
-	stack_a->content = stack_a->next->content;
-	stack_a->next->content = aux;
-	printf("sa\n");
+	*stack_b = (*stack_b)->next;
+	printf("rb");
 }

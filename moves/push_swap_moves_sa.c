@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_swaps.h                                  :+:      :+:    :+:   */
+/*   push_swap_moves_sa.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 01:03:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 01:38:45 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/11 17:14:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap_moves.h"
+
 /*
-** Execute push and swap operations and output them to the terminal.
+** Swap the two items at the top of stack A.
 */
 
-#ifndef PUSH_SWAP_SWAPS_H
-# define PUSH_SWAP_SWAPS_H
+void	push_swap_moves_sa(t_dlist *stack_a)
+{
+	void	*aux;
 
-# include <push_swap.h>
-
-void	push_swap_swaps_sa(t_dlist *stack_a);
-void	push_swap_swaps_sb(t_dlist *stack_b);
-
-#endif
+	aux = stack_a->content;
+	stack_a->content = stack_a->next->content;
+	stack_a->next->content = aux;
+	printf("sa\n");
+}

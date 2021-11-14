@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_moves_rr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 23:29:36 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/11 16:04:16 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/11 23:07:53 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap_moves.h"
+
 /*
-** Contain the base for all the program. Its dependencies, structures, enums, 
-** unions and macros are declared here.
+** Shift up all the items in the stack by one.
 */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# define STACK_A 0
-# define STACK_B 1
-
-# include <libft.h>
-
-#endif
+t_dlist	*push_swap_moves_rb(t_dlist *stack_b)
+{
+	printf("rb");
+	return (stack_b->next);
+}
