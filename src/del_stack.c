@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   del_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/17 14:13:11 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/15 22:55:55 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/17 14:18:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap.h>
+
 /*
-** Contain the base for all the program. Its dependencies, structures, enums, 
-** unions and macros are declared here.
+** Delete a stack.
 */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# define STACK_A 0
-# define STACK_B 1
-
-# include <libft.h>
-
-typedef struct	s_stack
+void	del_stack(t_stack *del)
 {
-	t_dlist	*head;
-	t_dlist	*tail;
-	t_dlist	*list;
-}	t_stack;
-
-t_stack	*new_stack(char **el);
-void	del_stack(t_stack *del);
-
-#endif
+	ft_dlstdel_circle(del->list);
+	del->list = NULL;
+	del->head = NULL;
+	del->tail = NULL;
+	del = NULL;
+}

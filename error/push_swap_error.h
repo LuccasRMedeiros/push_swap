@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/17 14:13:11 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/16 14:27:46 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/17 12:48:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Contain the base for all the program. Its dependencies, structures, enums, 
-** unions and macros are declared here.
+** Verify and deal with errors caused by the user or the program itself.
 */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_ERROR_H
+# define PUSH_SWAP_ERROR_H
 
-# define STACK_A 0
-# define STACK_B 1
+# include <push_swap.h>
 
-# include <libft.h>
-
-typedef struct	s_stack
-{
-	t_dlist	*head;
-	t_dlist	*tail;
-	t_dlist	*list;
-}	t_stack;
-
-t_stack	*new_stack(char **el);
-void	del_stack(t_stack *del);
+void	push_swap_error_check_args(char **argv);
+int		*push_swap_error_try_parse_args(int argc, char **argv);
 
 #endif

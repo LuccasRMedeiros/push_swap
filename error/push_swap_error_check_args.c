@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_error_check_args.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otakuocidental <otakuocidental@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/18 00:36:44 by otakuociden      ###   ########.fr       */
+/*   Created: 2021/11/16 14:52:36 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/17 15:43:00 by otakuociden      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_error.h>
 
 /*
-** Uses sort algorithm to create a set of push_swap instructions.
+** Check for wrong arguments (letters, non integer numbers, duplicates etc.).
+**
+** Case it find any problem it will write "Error\n" on stdout and will exit with
+** 0.
 */
 
-int	main(int argc, char **argv)
+void	push_swap_error_check_args(char **argv)
 {
-	int	*pre_stack;
+	int	n;
+	int	i;
 
-	if (argc <= 1)
-		return (0);
-	push_swap_error_check_args(argv);
-	pre_stack = push_swap_error_try_parse_args(argc, argv);
-	for (int i = 0; i < argc - 1; ++i)
+	n = 1;
+	i = 0;
+	while (argv[n])
 	{
-		ft_putnbr_fd(pre_stack[i], 1);
-		write(1, "\n", 1);
+		while (argv[n][i])
+		{
+			if (!ft_isdigit(argv[n][i]))
+			{
+				ft_putstr_fd("Error\n", 1);
+				exit(0);
+			}
+			++i;
+		}
+		i = 0;
+		++n;
 	}
-	ft_putstr_fd("=========================DONE=========================\n", 1);
-	free(pre_stack);
-	return (0); 
 }
