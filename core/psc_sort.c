@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_prog.c                                         :+:      :+:    :+:   */
+/*   psc_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/23 13:28:56 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/23 11:28:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/23 13:46:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include <push_swap_core.h>
 
 /*
-** Clean the stacks.
+** Look at stack A and B and execute a series of movement till it terminates to 
+** sort the stack A.
 */
 
-void	end_prog(t_prog **prog)
+void	psc_sort(t_prog *prog)
 {
-	t_prog	*aux;
+	int	note;
 
-	aux = *prog;
-	aux->stack_size = 0;
-	if (!aux->pre_stack)
+	note = psc_look(prog);
+	if (!note)
 		return ;
-	if (aux->stack_a)
-		ft_dlstclear_circle(&aux->stack_a, del_item);
-	if (aux->stack_b)
-		ft_dlstclear_circle(&aux->stack_b, del_item);
-	free(aux->pre_stack);
-	free(aux);
-	aux->pre_stack = NULL;
-	*prog = NULL;
+	psc_execute(prog, psm_rra);
+	psc_execute(prog, psm_rra);
+	psc_execute(prog, psm_sa);
+	psc_execute(prog, psm_ra);
+	psc_execute(prog, psm_ra);
+	psc_sort(prog);
 }

@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/11/23 00:36:55 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/11/23 11:52:24 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ MD_MOVES =	psm_pa.c \
 
 MD_CORE =	psc_execute.c \
 			psc_look.c \
+			psc_sort.c \
 
 SRC =	$(BASE) \
 		$(MD_ERROR) \

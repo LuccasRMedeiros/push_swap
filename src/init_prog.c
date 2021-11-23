@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/21 21:26:16 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:28:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_prog	*init_prog(int *pre_stack, int size)
 	prog = malloc(sizeof(*prog));
 	if (!prog)
 		return (NULL);
+	prog->stack_size = size;
 	prog->pre_stack = pre_stack;
 	prog->stack_a = set_stack_a(pre_stack, size);
 	if (!prog->stack_a)

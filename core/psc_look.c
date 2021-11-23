@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:25:02 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/23 00:49:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/23 12:01:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,10 @@
 ** not considered).
 */
 
-static void	look_at_b(t_prog *prog)
+static void	look_at_b(void)
 {
-	t_dlist	*stack_b;
-	int		this;
-	t_dlist	*tail;
-	t_dlist	*aux;
-
-	stack_b = prog->stack_a;
-	if (!stack_b->content)
-		return ;
-	this = *(int *)stack_b->content;
-	tail = stack_b->prev;
-	aux = stack_b;
-	while (aux != tail)
-	{
-		printf("stack_b: %i", this);
-		if (this < *(int *)aux->next->content)
-			ft_putendl_fd("F", 1);
-		aux = aux->next;
-		this = *(int *)aux->content;
-	}
-	printf("stack_b: %i", this);
+	//TODO
+	return ;
 }
 
 /*
@@ -48,38 +30,41 @@ static void	look_at_b(t_prog *prog)
 ** not considered).
 */
 
-static void	look_at_a(t_prog *prog)
+static int	look_at_a(t_prog *prog)
 {
-	t_dlist	*stack_a;
+	int		pos;
+	int		notation;
 	int		this;
 	t_dlist	*tail;
-	t_dlist	*aux;
+	t_dlist	*stack_a;
 
+	if (!prog->stack_a->content)
+		return 0;
+	pos = 0;
+	notation = 0;
+	this = *(int *)prog->stack_a->content;
+	tail = prog->stack_a->prev;
 	stack_a = prog->stack_a;
-	if (!stack_a->content)
-		return ;
-	this = *(int *)stack_a->content;
-	tail = stack_a->prev;
-	aux = stack_a;
-	while (aux != tail)
+	while (stack_a != tail)
 	{
-		printf("stack_a: %i\n", this);
-		if (this > *(int *)aux->next->content)
-			psc_execute(prog, psm_sa);
-		else
-			psc_execute(prog, psm_ra);
-		aux = aux->next;
-		this = *(int *)aux->content;
+		++pos;
+		if (this > *(int *)stack_a->next->content)
+			notation = pos;
+		stack_a = stack_a->next;
+		this = *(int *)stack_a->content;
 	}
-	printf("stack_a: %i\n", this);
+	return (notation);
 }
 
 /*
 ** Look to each element of the stacks.
 */
 
-void	psc_look(t_prog *prog)
+int	psc_look(t_prog *prog)
 {
-	look_at_a(prog);
-	look_at_b(prog);
+	int	note_a;
+
+	note_a = look_at_a(prog);
+	look_at_b(); //TODO
+	return (note_a);
 }

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/21 21:08:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:28:54 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct	s_prog
 {
+	int		stack_size;
 	int		*pre_stack;
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;
