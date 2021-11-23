@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_moves_ss.c                               :+:      :+:    :+:   */
+/*   psm_rb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 01:35:17 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 23:09:55 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 23:50:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/22 00:08:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_moves.h"
+#include <push_swap_moves.h>
 
 /*
-** Swap the two items at the top of stack A and stack B.
+** Shift up all the items on stack B.
 */
 
-void	push_swap_moves_ss(t_dlist *stack_a, t_dlist *stack_b)
+void	psm_rb(t_prog **prog)
 {
-	void	*aux_a;
-	void	*aux_b
+	t_prog	*aux;
 
-	aux_a = stack_a->content;
-	aux_b = stack_b->content;
-	stack_a->content = stack_a->next->content;
-	stack_b->content = stack_b->next->content;
-	stack_a->next->content = aux_a;
-	stack_b->next->content = aux_b;
-	printf("ss\n");
+	aux = *prog;
+	aux->stack_b = aux->stack_b->next;
+	ft_putendl_fd("rb", 1);
 }

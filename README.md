@@ -19,19 +19,19 @@ passed as arguments, the b stack will auxiliate in the sort process.
 ## What are push_swap instructions
 
 The push_swap instructions are:
- - sa : swap the top 2 itens on stack a.
- - sb : swap the top 2 itens on stack b.
+ - sa : swap the top 2 items on stack a.
+ - sb : swap the top 2 items on stack b.
  - ss : execute sa and sb at the same time.
- - pa : push the top iten on stack a to the top of stack b.
- - pb : push the top iten on stack b to the top of stack a.
- - ra : shift up all the itens on stack a, the first iten goes to the bottom of 
+ - pa : push the top item on stack b to the top of stack a.
+ - pb : push the top item on stack a to the top of stack b.
+ - ra : shift up all the items on stack a, the first item goes to the bottom of 
 the stack.
- - rb : shift up all the itens on stack b, the first iten goes to the bottom of
+ - rb : shift up all the items on stack b, the first item goes to the bottom of
 the stacK.
  - rr : execute ra and rb at the same time.
- - rra : shift down all the itens on stack a, the last iten goes to the top of
+ - rra : shift down all the items on stack a, the last item goes to the top of
 the stack.
- - rrb : shift down all the itens on stack b, the last iten goes to the top of
+ - rrb : shift down all the items on stack b, the last item goes to the top of
 the stack.
  - rrr : execute rra and rrb at the same time.
 

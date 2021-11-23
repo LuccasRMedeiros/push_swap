@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/11/17 16:56:49 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/11/23 00:36:55 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,35 +36,59 @@ CC = clang
 
 FLAGS = -Wall -Werror -Wextra -g
 
+SANITIZERS =
+
 DEPS = -L libs/libft/ -lft \
 
 INCLUDES =	-I ./libs/libft/ \
 	  		-I ./includes/ \
 
-BASE =	del_stack.c \
-		new_stack.c \
+BASE =	del_item.c \
+		end_prog.c \
+		init_prog.c \
 
-MD_ERROR =	push_swap_error_check_args.c \
-			push_swap_error_try_parse_args.c \
+MD_ERROR =	pse_check_args.c \
+			pse_try_parse_args.c \
 
-SRC = $(MD_ERROR)
+MD_MOVES =	psm_pa.c \
+			psm_pb.c \
+			psm_ra.c \
+			psm_rb.c \
+			psm_rr.c \
+			psm_rra.c \
+			psm_rrb.c \
+			psm_rrr.c \
+			psm_sa.c \
+			psm_sb.c \
+			psm_ss.c \
+
+MD_CORE =	psc_execute.c \
+			psc_look.c \
+
+SRC =	$(BASE) \
+		$(MD_ERROR) \
+		$(MD_MOVES) \
+		$(MD_CORE) \
 
 OBJ = $(SRC:%.c=%.o)
 
-SRC_FULL =	$(addprefix ./error/, $(MD_ERROR)) \
+SRC_FULL =	$(addprefix ./src/, $(BASE)) \
+			$(addprefix ./error/, $(MD_ERROR)) \
+			$(addprefix ./moves/, $(MD_MOVES)) \
+			$(addprefix ./core/, $(MD_CORE)) \
 
 all: makelibft $(NAME)
 	echo "$$PUSHSWAP"
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(INCLUDES) push_swap.c -o $(NAME) $(OBJ) $(DEPS)
+	$(CC) $(FLAGS) $(INCLUDES) $(SANITIZERS) push_swap.c -o $(NAME) $(OBJ) $(DEPS)
 
 $(OBJ): $(SRC_FULL)
-	$(CC) $(FLAGS) $(INCLUDES) -c $(SRC_FULL)
+	$(CC) $(FLAGS) $(INCLUDES) $(SANITIZERS) -c $(SRC_FULL)
 
 clean:
 	make -C ./libs/libft clean
-	rm -f $(OBJ)
+	rm -f *.o
 
 fclean: clean
 	make -C ./libs/libft fclean

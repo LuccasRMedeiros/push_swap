@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:27:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/17 12:48:43 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/22 12:04:58 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #ifndef PUSH_SWAP_ERROR_H
 # define PUSH_SWAP_ERROR_H
 
-# include <push_swap.h>
+# include "push_swap.h"
 
-void	push_swap_error_check_args(char **argv);
-int		*push_swap_error_try_parse_args(int argc, char **argv);
+void	pse_check_args(char **argv);
+int		*pse_try_parse_args(int argc, char **argv);
 
 #endif

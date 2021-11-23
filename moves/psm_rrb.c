@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_moves_ra.c                               :+:      :+:    :+:   */
+/*   psm_rrb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 16:04:16 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 17:14:32 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 23:50:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/22 00:09:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_moves.h"
+#include <push_swap_moves.h>
 
 /*
-** Shift up all the items in the stack by one.
+** Shift down all the items on stack B.
 */
 
-t_dlist	*push_swap_moves_ra(t_dlist *stack_a)
+void	psm_rrb(t_prog **prog)
 {
-	printf("ra");
-	return (stack_a->next);
+	t_prog	*aux;
+
+	aux = *prog;
+	aux->stack_b = aux->stack_b->prev;
+	ft_putendl_fd("rrb", 1);
 }

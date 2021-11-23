@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_moves_pb.c                               :+:      :+:    :+:   */
+/*   psm_pb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 14:22:54 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 17:14:32 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/22 13:04:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_moves.h"
+#include <push_swap_moves.h>
 
 /*
-** Push the top item on stack B to the top of stack A.
+** Push the top item on stack a to the top of stack b.
 */
 
-void	push_swap_moves_pb(t_dlist *stack_b, t_dlist *stack_a)
+void	psm_pb(t_prog **prog)
 {
-	ft_dlstinsert(stack_b->content, stack_a);
-	ft_dlstdelone_circle(stack_b);
-	printf("pb");
+	t_prog	*aux;
+
+	aux = *prog;
+	if (aux->stack_b->content)
+	{
+		ft_dlstadd_circle(aux->stack_a->content, &aux->stack_b);
+		aux->stack_b = aux->stack_b->prev;
+	}
+	else
+		aux->stack_b->content = aux->stack_a->content;
+	aux->stack_a = ft_dlstpop_circle(aux->stack_a);
+	ft_putendl_fd("pb", 1);
 }

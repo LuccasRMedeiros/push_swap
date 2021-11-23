@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error_try_parse_args.c                   :+:      :+:    :+:   */
+/*   pse_try_parse_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otakuocidental <otakuocidental@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/18 00:43:37 by otakuociden      ###   ########.fr       */
+/*   Updated: 2021/11/21 15:22:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	check_next(int next, int i, int *pre_stack)
 	{
 		if (next == pre_stack[n])
 		{
-			ft_putstr_fd("Error\n", 1);
+			free(pre_stack);
+			ft_putendl_fd("Error", 1);
 			exit(0);
 		}
 		++n;
@@ -44,7 +45,7 @@ static int	check_next(int next, int i, int *pre_stack)
 ** it.
 */
 
-int	*push_swap_error_try_parse_args(int argc, char **argv)
+int	*pse_try_parse_args(int argc, char **argv)
 {
 	int		*pre_stack;
 	int		next;
@@ -53,7 +54,7 @@ int	*push_swap_error_try_parse_args(int argc, char **argv)
 	pre_stack = ft_calloc(argc - 1, sizeof(int));
 	if (!pre_stack)
 	{
-		ft_putstr_fd("Failed to allocate memory for pre_stack\n", 2);
+		ft_putendl_fd("Failed to allocate memory for pre_stack", 2);
 		exit(0);
 	}
 	i = 1;

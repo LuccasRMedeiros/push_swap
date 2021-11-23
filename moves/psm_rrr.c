@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_stack.c                                        :+:      :+:    :+:   */
+/*   psm_rrr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 22:55:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/17 14:18:43 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 23:50:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/22 00:09:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include <push_swap_moves.h>
 
 /*
-** Delete a stack.
+** Shift down all the items of both stacks.
 */
 
-void	del_stack(t_stack *del)
+void	psm_rrr(t_prog **prog)
 {
-	ft_dlstdel_circle(del->list);
-	del->list = NULL;
-	del->head = NULL;
-	del->tail = NULL;
-	del = NULL;
+	t_prog	*aux;
+
+	aux = *prog;
+	aux->stack_a = aux->stack_a->prev;
+	aux->stack_b = aux->stack_b->prev;
+	ft_putendl_fd("rrr", 1);
 }

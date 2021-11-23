@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.h                                  :+:      :+:    :+:   */
+/*   del_item.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 14:27:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/22 12:04:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/19 15:52:50 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/20 12:51:24 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap.h>
+
 /*
-** Verify and deal with errors caused by the user or the program itself.
+** Delete a int inside a stack.
 */
 
-#ifndef PUSH_SWAP_ERROR_H
-# define PUSH_SWAP_ERROR_H
-
-# include "push_swap.h"
-
-void	pse_check_args(char **argv);
-int		*pse_try_parse_args(int argc, char **argv);
-
-#endif
+void	del_item(void *int_n)
+{
+	*(int *)int_n = 0;
+}

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otakuocidental <otakuocidental@student.    +#+  +:+       +#+        */
+/*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/18 00:36:44 by otakuociden      ###   ########.fr       */
+/*   Updated: 2021/11/22 23:03:15 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_error.h>
+#include <push_swap_core.h>
 
 /*
 ** Uses sort algorithm to create a set of push_swap instructions.
@@ -18,18 +19,15 @@
 
 int	main(int argc, char **argv)
 {
-	int	*pre_stack;
+	int		*pre_stack;
+	t_prog	*prog;
 
 	if (argc <= 1)
 		return (0);
-	push_swap_error_check_args(argv);
-	pre_stack = push_swap_error_try_parse_args(argc, argv);
-	for (int i = 0; i < argc - 1; ++i)
-	{
-		ft_putnbr_fd(pre_stack[i], 1);
-		write(1, "\n", 1);
-	}
-	ft_putstr_fd("=========================DONE=========================\n", 1);
-	free(pre_stack);
+	pse_check_args(argv);
+	pre_stack = pse_try_parse_args(argc, argv);
+	prog = init_prog(pre_stack, argc - 1);
+	psc_look(prog);
+	end_prog(&prog);
 	return (0); 
 }

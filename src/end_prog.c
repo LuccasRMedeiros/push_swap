@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   end_prog.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/21 21:08:59 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/21 21:33:12 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap.h>
+
 /*
-** Contain the base for all the program. Its dependencies, structures, enums, 
-** unions and macros are declared here.
+** Clean the stacks.
 */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <libft.h>
-
-typedef struct	s_prog
+void	end_prog(t_prog **prog)
 {
 	int		*pre_stack;
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;
-}	t_prog;
 
-void	del_item(void *int_n);
-void	end_prog(t_prog **prog);
-t_prog	*init_prog(int *pre_stack, int size);
-
-#endif
+	pre_stack = (*prog)->pre_stack;
+	stack_a = (*prog)->stack_a;
+	stack_b = (*prog)->stack_b;
+	if (!pre_stack)
+		return ;
+	if (stack_a)
+		ft_dlstclear_circle(&stack_a, del_item);
+	if (stack_b)
+		ft_dlstclear_circle(&stack_b, del_item);
+	free(pre_stack);
+	free(*prog);
+	pre_stack = NULL;
+	*prog = NULL;
+}

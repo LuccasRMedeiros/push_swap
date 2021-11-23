@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/17 14:13:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/21 21:08:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,17 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define STACK_A 0
-# define STACK_B 1
-
 # include <libft.h>
 
-typedef struct	s_stack
+typedef struct	s_prog
 {
-	t_dlist	*head;
-	t_dlist	*tail;
-	t_dlist	*list;
-}	t_stack;
+	int		*pre_stack;
+	t_dlist	*stack_a;
+	t_dlist	*stack_b;
+}	t_prog;
 
-t_stack	*new_stack(char **el);
-void	del_stack(t_stack *del);
+void	del_item(void *int_n);
+void	end_prog(t_prog **prog);
+t_prog	*init_prog(int *pre_stack, int size);
 
 #endif

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_moves_rr.c                               :+:      :+:    :+:   */
+/*   psc_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 16:04:16 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/11 23:07:53 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/23 00:09:34 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/23 00:42:29 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_moves.h"
+#include <push_swap_core.h>
 
 /*
-** Shift up all the items in the stack by one.
+** Execute a action.
 */
 
-t_dlist	*push_swap_moves_rb(t_dlist *stack_b)
+void	psc_execute(t_prog *prog, void (action)(t_prog **))
 {
-	printf("rb");
-	return (stack_b->next);
+	action(&prog);
+	psc_look(prog);
 }

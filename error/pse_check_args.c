@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error_check_args.c                       :+:      :+:    :+:   */
+/*   pse_check_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otakuocidental <otakuocidental@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:52:36 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/17 15:43:00 by otakuociden      ###   ########.fr       */
+/*   Updated: 2021/11/21 00:29:44 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** 0.
 */
 
-void	push_swap_error_check_args(char **argv)
+void	pse_check_args(char **argv)
 {
 	int	n;
 	int	i;

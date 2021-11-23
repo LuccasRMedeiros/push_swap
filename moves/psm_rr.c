@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.h                                  :+:      :+:    :+:   */
+/*   psm_rr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 14:27:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/22 12:04:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 23:50:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/22 00:09:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap_moves.h>
+
 /*
-** Verify and deal with errors caused by the user or the program itself.
+** Shift up all the items of both stacks.
 */
 
-#ifndef PUSH_SWAP_ERROR_H
-# define PUSH_SWAP_ERROR_H
+void	psm_rr(t_prog **prog)
+{
+	t_prog	*aux;
 
-# include "push_swap.h"
-
-void	pse_check_args(char **argv);
-int		*pse_try_parse_args(int argc, char **argv);
-
-#endif
+	aux = *prog;
+	aux->stack_a = aux->stack_a->next;
+	aux->stack_b = aux->stack_b->next;
+	ft_putendl_fd("rr", 1);
+}

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.h                                  :+:      :+:    :+:   */
+/*   push_swap_core.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 14:27:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/22 12:04:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/22 12:01:29 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/23 00:39:36 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Verify and deal with errors caused by the user or the program itself.
+** Contain the core functions to sort.
 */
 
-#ifndef PUSH_SWAP_ERROR_H
-# define PUSH_SWAP_ERROR_H
+#ifndef PUSH_SWAP_CORE_H
+# define PUSH_SWAP_CORE_H
 
-# include "push_swap.h"
+# include "push_swap_moves.h"
 
-void	pse_check_args(char **argv);
-int		*pse_try_parse_args(int argc, char **argv);
+void	psc_execute(t_prog *prog, void (action)(t_prog **));
+void	psc_look(t_prog *prog);
 
 #endif

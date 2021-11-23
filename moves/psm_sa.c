@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_error.h                                  :+:      :+:    :+:   */
+/*   psm_sa.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 14:27:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/22 12:04:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/11/22 12:16:48 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap_moves.h>
+
 /*
-** Verify and deal with errors caused by the user or the program itself.
+** Swap the two items at the top of stack A.
 */
 
-#ifndef PUSH_SWAP_ERROR_H
-# define PUSH_SWAP_ERROR_H
+void	psm_sa(t_prog **prog)
+{
+	t_prog	*aux;
+	void	*old_top;
 
-# include "push_swap.h"
+	aux = *prog;
+	old_top = aux->stack_a->content;
+	aux->stack_a->content = aux->stack_a->next->content;
+	aux->stack_a->next->content = old_top;
+	ft_putendl_fd("sa", 1);
+}
 
-void	pse_check_args(char **argv);
-int		*pse_try_parse_args(int argc, char **argv);
-
-#endif
