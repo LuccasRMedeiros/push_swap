@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:01:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/27 01:09:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/29 22:31:09 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "push_swap_moves.h"
 
 void	psc_execute(t_prog *prog, void (action)(t_prog **));
-void	psc_anotate(t_prog *prog, int notation[4]);
+void	psc_observe(t_prog *prog, int notation[4]);
+void	psc_sort(t_prog *prog);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/26 15:41:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/11/30 13:57:55 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,46 +18,28 @@
 ** will compete with the rest of the items that weren't compared yet.
 */
 
-static int	find_major(int *pre_stack, int size)
+static void	find_limits(int *pre_stack, int size, int limits[2])
 {
 	int		i;
-	int		champion;
-	int		challenger;
-
-	i = 0;
-	champion = pre_stack[size - 1];
-	challenger = 0;
-	while (i < size - 1)
-	{
-		challenger = pre_stack[i];
-		if (challenger > champion)
-			champion = challenger;
-		++i;
-	}
-	return (champion);
-}
-
-/*
-** Behaves similarly to find_major, but the champion will be the minor value.
-*/
-
-static int	find_minor(int *pre_stack, int size)
-{
-	int		i;
-	int		champion;
+	int		l_champion;
+	int		g_champion;
 	int		challenger;
 
 	i = 1;
-	champion = pre_stack[0];
+	l_champion = pre_stack[0];
+	g_champion = l_champion;
 	challenger = 0;
 	while (i < size)
 	{
 		challenger = pre_stack[i];
-		if (challenger < champion)
-			champion = challenger;
+		if (challenger < l_champion)
+			l_champion = challenger;
+		else if (challenger > g_champion)
+			g_champion = challenger;
 		++i;
 	}
-	return (champion);
+	limits[lower] = l_champion;
+	limits[greater] = g_champion;
 }
 
 /*
@@ -114,8 +96,7 @@ t_prog	*init_prog(int *pre_stack, int size)
 		return (NULL);
 	prog->stack_size = size;
 	prog->pre_stack = pre_stack;
-	prog->major = find_major(pre_stack, size);
-	prog->minor = find_minor(pre_stack, size);
+	find_limits(pre_stack, size, prog->limits);
 	prog->stack_a = set_stack_a(pre_stack, size);
 	if (!prog->stack_a)
 	{
