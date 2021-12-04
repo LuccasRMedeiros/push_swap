@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/30 22:29:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/01 21:56:39 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ enum	e_item
 
 typedef struct	s_prog
 {
-	int		stack_size;
 	int		*pre_stack;
 	int		limits[2];
 	t_dlist	*stack_a;
+	int		a_size;
 	t_dlist	*stack_b;
+	int		b_size;
 }	t_prog;
 
 /*

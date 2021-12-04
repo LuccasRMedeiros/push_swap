@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:04:59 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/30 20:18:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:18:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,25 @@ static int	observe_stack_b(t_prog *prog)
 {
 	t_dlist	*stack;
 	t_dlist	*tail;
-	int		imp;
+	size_t	imp;
 
 	stack = prog->stack_b;
 	if (!stack->content)
 		return (0);
 	tail = stack->prev;
-	imp = prog->stack_size;
+	imp = prog->b_size;
 	while (stack != tail)
 	{
 		if (*(int *)stack->content > *(int *)stack->next->content)
 			--imp;
 		else
-			imp = prog->stack_size;
+			imp = prog->b_size;
 		stack = stack->next;
 	}
-	if (*(int *)stack->content < *(int *)stack->next->content)
+	if (*(int *)stack->content <= *(int *)stack->next->content)
 		--imp;
+	else
+		imp = prog->b_size;
 	return (imp);
 }
 
@@ -48,25 +50,25 @@ static int	observe_stack_a(t_prog *prog)
 {
 	t_dlist	*stack;
 	t_dlist	*tail;
-	int		imp;
+	size_t	imp;
 
 	stack = prog->stack_a;
 	if (!stack->content)
 		return (0);
 	tail = stack->prev;
-	imp = prog->stack_size;
+	imp = prog->a_size;
 	while (stack != tail)
 	{
 		if (*(int *)stack->content < *(int *)stack->next->content)
 			--imp;
 		else
-			imp = prog->stack_size;
+			imp = prog->a_size;
 		stack = stack->next;
 	}
-	if (*(int *)stack->content > *(int *)stack->next->content)
+	if (*(int *)stack->content >= *(int *)stack->next->content)
 		--imp;
 	else
-		imp = prog->stack_size;
+		imp = prog->a_size;
 	return (imp);
 }
 

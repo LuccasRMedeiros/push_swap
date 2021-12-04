@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/11/30 12:34:14 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/12/03 13:24:05 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,10 @@ MD_MOVES =	psm_pa.c \
 			psm_sb.c \
 			psm_ss.c \
 
-MD_CORE =	psc_observe.c \
-			psc_sort.c \
+MD_CORE =	psc_act.c \
+			psc_merge.c \
+			psc_observe.c \
+			psc_predict.c \
 
 SRC =	$(BASE) \
 		$(MD_ERROR) \
@@ -81,10 +83,10 @@ all: makelibft $(NAME)
 	echo "$$PUSHSWAP"
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(INCLUDES) $(SANITIZERS) push_swap.c -o $(NAME) $(OBJ) $(DEPS)
+	$(CC) $(FLAGS) $(SANITIZERS) $(INCLUDES) push_swap.c -o $(NAME) $(OBJ) $(DEPS)
 
 $(OBJ): $(SRC_FULL)
-	$(CC) $(FLAGS) $(INCLUDES) $(SANITIZERS) -c $(SRC_FULL)
+	$(CC) $(FLAGS) $(SANITIZERS) $(INCLUDES) -c $(SRC_FULL)
 
 clean:
 	make -C ./libs/libft clean

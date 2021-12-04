@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/30 13:57:55 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/01 21:57:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_prog	*init_prog(int *pre_stack, int size)
 	prog = malloc(sizeof(*prog));
 	if (!prog)
 		return (NULL);
-	prog->stack_size = size;
 	prog->pre_stack = pre_stack;
 	find_limits(pre_stack, size, prog->limits);
 	prog->stack_a = set_stack_a(pre_stack, size);
@@ -103,6 +102,7 @@ t_prog	*init_prog(int *pre_stack, int size)
 		free(prog);
 		return (NULL);
 	}
+	prog->a_size = size;
 	prog->stack_b = set_stack_b();
 	if (!prog->stack_b)
 	{
@@ -110,5 +110,6 @@ t_prog	*init_prog(int *pre_stack, int size)
 		free(prog);
 		return (NULL);
 	}
+	prog->b_size = 0;
 	return (prog);
 }
