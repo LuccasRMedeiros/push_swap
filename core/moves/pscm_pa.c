@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psm_ra.c                                           :+:      :+:    :+:   */
+/*   pscm_pa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 23:50:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/22 00:08:48 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/05 22:04:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_moves.h>
+#include <push_swap_core_moves.h>
 
 /*
-** Shift up all the items on stack A.
+** Push the top item on stack b to the top of stack a.
 */
 
-void	psm_ra(t_prog **prog)
+void	pscm_pa(t_prog **prog)
 {
 	t_prog	*aux;
 
 	aux = *prog;
-	aux->stack_a = aux->stack_a->next;
-	ft_putendl_fd("ra", 1);
+	if (aux->stack_a->content)
+	{
+		ft_dlstadd_circle(aux->stack_b->content, &aux->stack_a);
+		aux->stack_a = aux->stack_a->prev;
+	}
+	else
+		aux->stack_a->content = aux->stack_b->content;
+	aux->stack_b = ft_dlstpop_circle(aux->stack_b);
+	aux->a_size += 1;
+	aux->b_size -= 1;
+	pscmu_update_limits(aux);
+	ft_putendl_fd("pa", 1);
 }

@@ -6,25 +6,32 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/01 21:57:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/05 21:53:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
 /*
-** Make each item of the stack compete with the others. Everytime one "champion"
-** is beaten by a "challenger", this challenger becomes the new champion and it
-** will compete with the rest of the items that weren't compared yet.
+** Init the arrays limits. The limits_b is initiated with zero and zero, but
+** as stack A is started having all the argumented numbers, the limits_a will
+** pass through a "tournament".
+**
+** In the tournament each item of the stack compete with the others. Everytime 
+** one "champion" is beaten by a "challenger", this challenger becomes the new 
+** champion and it will compete with the rest of the items that weren't compared
+** yet.
 */
 
-static void	find_limits(int *pre_stack, int size, int limits[2])
+static void	init_limits(int *pre_stack, int size, int lts_a[2], int lts_b[2])
 {
 	int		i;
 	int		l_champion;
 	int		g_champion;
 	int		challenger;
 
+	lts_b[lower] = 0;
+	lts_b[greater] = 0;
 	i = 1;
 	l_champion = pre_stack[0];
 	g_champion = l_champion;
@@ -38,8 +45,8 @@ static void	find_limits(int *pre_stack, int size, int limits[2])
 			g_champion = challenger;
 		++i;
 	}
-	limits[lower] = l_champion;
-	limits[greater] = g_champion;
+	lts_a[lower] = l_champion;
+	lts_a[greater] = g_champion;
 }
 
 /*
@@ -95,7 +102,7 @@ t_prog	*init_prog(int *pre_stack, int size)
 	if (!prog)
 		return (NULL);
 	prog->pre_stack = pre_stack;
-	find_limits(pre_stack, size, prog->limits);
+	init_limits(pre_stack, size, prog->limits_a, prog->limits_b);
 	prog->stack_a = set_stack_a(pre_stack, size);
 	if (!prog->stack_a)
 	{

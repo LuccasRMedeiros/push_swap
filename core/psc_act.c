@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 12:32:08 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/03 14:00:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/05 23:55:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@
 
 void	psc_act(t_prog *prog)
 {
-	t_act	*preds[3];
-	int		obs[2];
+	t_act	*preds[2];
+	int		obs[2][2];
 	size_t	act_i;
 
 	preds[0] = NULL;
 	preds[1] = NULL;
-	preds[2] = NULL;	
 	psc_observe(prog, obs);
 	act_i = 0;
-	if (!(obs[stk_a] + obs[stk_b]))
+	if (!((obs[stk_a][down] + obs[stk_a][up])
+				+ (obs[stk_b][down] + obs[stk_b][up])))
 	{
 		psc_merge(prog);
 		return ;

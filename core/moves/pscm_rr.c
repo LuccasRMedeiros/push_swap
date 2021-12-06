@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psm_sb.c                                           :+:      :+:    :+:   */
+/*   pscm_rr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/22 12:16:50 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/21 23:50:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/05 22:05:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_moves.h>
+#include <push_swap_core_moves.h>
 
 /*
-** Swap the two items at the top of stack B.
+** Shift up all the items of both stacks.
 */
 
-void	psm_sb(t_prog **prog)
+void	pscm_rr(t_prog **prog)
 {
 	t_prog	*aux;
-	void	*old_top;
 
 	aux = *prog;
-	old_top = aux->stack_b->content;
-	aux->stack_b->content = aux->stack_b->next->content;
-	aux->stack_b->next->content = old_top;
-	ft_putendl_fd("sb", 1);
+	aux->stack_a = aux->stack_a->next;
+	aux->stack_b = aux->stack_b->next;
+	ft_putendl_fd("rr", 1);
 }
-

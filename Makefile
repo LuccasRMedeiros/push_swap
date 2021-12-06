@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/12/03 13:24:05 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/12/05 22:01:24 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,34 +50,38 @@ BASE =	del_item.c \
 MD_ERROR =	pse_check_args.c \
 			pse_try_parse_args.c \
 
-MD_MOVES =	psm_pa.c \
-			psm_pb.c \
-			psm_ra.c \
-			psm_rb.c \
-			psm_rr.c \
-			psm_rra.c \
-			psm_rrb.c \
-			psm_rrr.c \
-			psm_sa.c \
-			psm_sb.c \
-			psm_ss.c \
-
 MD_CORE =	psc_act.c \
 			psc_merge.c \
 			psc_observe.c \
 			psc_predict.c \
 
+MD_CORE_MOVES =	pscm_pa.c \
+				pscm_pb.c \
+				pscm_ra.c \
+				pscm_rb.c \
+				pscm_rr.c \
+				pscm_rra.c \
+				pscm_rrb.c \
+				pscm_rrr.c \
+				pscm_sa.c \
+				pscm_sb.c \
+				pscm_ss.c \
+
+MD_CORE_MOVES_UTILS =	pscmu_update_limits.c \
+
 SRC =	$(BASE) \
 		$(MD_ERROR) \
-		$(MD_MOVES) \
 		$(MD_CORE) \
+		$(MD_CORE_MOVES) \
+		$(MD_CORE_MOVES_UTILS) \
 
 OBJ = $(SRC:%.c=%.o)
 
 SRC_FULL =	$(addprefix ./src/, $(BASE)) \
 			$(addprefix ./error/, $(MD_ERROR)) \
-			$(addprefix ./moves/, $(MD_MOVES)) \
 			$(addprefix ./core/, $(MD_CORE)) \
+			$(addprefix ./core/moves/, $(MD_CORE_MOVES)) \
+			$(addprefix ./core/moves/utils/, $(MD_CORE_MOVES_UTILS)) \
 
 all: makelibft $(NAME)
 	echo "$$PUSHSWAP"

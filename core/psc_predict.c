@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:38:50 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/03 21:49:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/06 00:45:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,25 @@ static void	deal(t_dlist *a, t_dlist *b, t_act *preds[3])
 {
 	if (!a->content || !b->content)
 		return ;
-	if (preds[0] == psm_pb)
+	if (preds[0] == pscm_pb)
 	{
 		if (*(int *)a->content > *(int *)b->content)
 		{
 			preds[1] = NULL;
 			return ;
 		}
-		if (preds[1] == psm_sb || preds[1] == psm_rb || preds[1] == psm_rrb)
+		if (preds[1] == pscm_sb || preds[1] == pscm_rb || preds[1] == pscm_rrb)
 			preds[0] = preds[1];
 		else if (*(int *)a->content > *(int *)b->next->content)
-			preds[0] = psm_rb;
+			preds[0] = pscm_rb;
 		else if (*(int *)a->content > *(int *)b->prev->content)
-			preds[0] = psm_rrb;
+			preds[0] = pscm_rrb;
 		else
 		{
 			preds[1] = NULL;
 			return ;
 		}
-		preds[1] = psm_pb;
+		preds[1] = pscm_pb;
 	}
 }
 
@@ -48,12 +48,12 @@ static void	deal(t_dlist *a, t_dlist *b, t_act *preds[3])
 
 static void	fuse(t_act *preds[3])
 {
-	if (preds[0] == psm_sa && preds[1] == psm_sb)
-		preds[0] = psm_ss;
-	else if (preds[0] == psm_ra && preds[1] == psm_rb)
-		preds[0] = psm_rr;
-	else if (preds[0] == psm_rra && preds[1] == psm_rrb)
-		preds[0] = psm_rrr;
+	if (preds[0] == pscm_sa && preds[1] == pscm_sb)
+		preds[0] = pscm_ss;
+	else if (preds[0] == pscm_ra && preds[1] == pscm_rb)
+		preds[0] = pscm_rr;
+	else if (preds[0] == pscm_rra && preds[1] == pscm_rrb)
+		preds[0] = pscm_rrr;
 	else
 		return ;
 	preds[1] = NULL;
@@ -68,19 +68,19 @@ static t_act	*predict_b(t_prog *prog, int obs[2])
 {
 	int		comp[4];
 
-	if (!obs[stk_b])
+	if (!(obs[down] + obs[up]))
 		return (NULL);
-	comp[item] = *(int *)prog->stack_a->content;
-	comp[next] = *(int *)prog->stack_a->next->content;
-	comp[nxt2] = *(int *)prog->stack_a->next->next->content;
-	comp[prev] = *(int *)prog->stack_a->prev->content;
-	if (comp[item] < comp[next] && comp[item] > comp[nxt2])
-		return (psm_sb);
-	else if (obs[stk_b] <= prog->a_size / 2 && comp[item] < comp[prev])
-		return (psm_rb);
-	else if (comp[item] < comp[prev] || comp[item] > comp[next])
-		return (psm_rrb);
-	return (psm_pa);
+	comp[item] = *(int *)prog->stack_b->content;
+	comp[next] = *(int *)prog->stack_b->next->content;
+	comp[nxt2] = *(int *)prog->stack_b->next->next->content;
+	comp[prev] = *(int *)prog->stack_b->prev->content;
+	if (comp[item] > comp[next] && (comp[item] <= comp[nxt2]))
+		return (pscm_sb);
+	else if (obs[down] >= obs[up] && comp[item] > comp[prev])
+		return (pscm_rb);
+	else if (obs[down] < obs[up] && comp[item] < comp[next])
+		return (pscm_rrb);
+	return (pscm_pa);
 }
 
 /*
@@ -92,19 +92,19 @@ static t_act	*predict_a(t_prog *prog, int obs[2])
 {
 	int		comp[4];
 
-	if (!obs[stk_a])
+	if (!(obs[down] + obs[up]))
 		return (NULL);
 	comp[item] = *(int *)prog->stack_a->content;
 	comp[next] = *(int *)prog->stack_a->next->content;
 	comp[nxt2] = *(int *)prog->stack_a->next->next->content;
 	comp[prev] = *(int *)prog->stack_a->prev->content;
-	if (comp[item] > comp[next] && comp[item] < comp[nxt2])
-		return (psm_sa);
-	else if (obs[stk_a] <= prog->a_size / 2 && comp[item] > comp[prev])
-		return (psm_ra);
-	else if (comp[item] > comp[prev] || comp[item] < comp[next])
-		return (psm_rra);
-	return (psm_pb);
+	if (comp[item] > comp[next] && (comp[item] <= comp[nxt2]))
+		return (pscm_sa);
+	else if (obs[down] >= obs[up] && comp[item] > comp[prev])
+		return (pscm_ra);
+	else if (obs[down] < obs[up] && comp[item] < comp[next])
+		return (pscm_rra);
+	return (pscm_pb);
 }
 
 /*
@@ -112,11 +112,11 @@ static t_act	*predict_a(t_prog *prog, int obs[2])
 ** compared and then it return the presumed best course of action.
 */
 
-void	psc_predict(t_prog *prog, int obs[2], t_act *preds[3])
+void	psc_predict(t_prog *prog, int obs[2][2], t_act *preds[2])
 {
-	preds[0] = predict_a(prog, obs);
-	preds[1] = predict_b(prog, obs);
-	if (preds[0] == psm_pb || preds[1] == psm_pa)
+	preds[0] = predict_a(prog, obs[stk_a]);
+	preds[1] = predict_b(prog, obs[stk_b]);
+	if (preds[0] == pscm_pb || preds[1] == pscm_pa)
 		deal(prog->stack_a, prog->stack_b, preds);
 	fuse(preds);
 }

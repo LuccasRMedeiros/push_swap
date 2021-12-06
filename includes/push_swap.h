@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/01 21:56:39 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/05 23:56:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ enum	e_item
 };
 
 /*
+** Which index represent the direction of a imperfection.
+*/
+
+enum	e_imperfection
+{
+	down,
+	up,
+};
+
+/*
 ** The s_prog is a "header" to provide all the information the program need to
 ** sort the stack.
 */
@@ -60,7 +70,8 @@ enum	e_item
 typedef struct	s_prog
 {
 	int		*pre_stack;
-	int		limits[2];
+	int		limits_a[2];
+	int		limits_b[2];
 	t_dlist	*stack_a;
 	int		a_size;
 	t_dlist	*stack_b;
