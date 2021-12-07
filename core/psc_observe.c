@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:04:59 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/06 00:53:39 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:20:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ static void	observe_stack_b(t_prog *prog, int imps_b[2])
 	int		pos;
 
 	stack = prog->stack_b;
-	pos = 0;
-	while (pos < prog->b_size && !imps_b[down])
+	pos = 1;
+	while (pos <= prog->b_size && !imps_b[down])
 	{
 		if (*(int *)stack->content < *(int *)stack->next->content
-				&& *(int *)stack->content != prog->limits_b[greater]
-				&& *(int *)stack->next->content != prog->limits_b[lower])
+				&& (*(int *)stack->content != prog->limits_b[lower]
+				|| *(int *)stack->next->content != prog->limits_b[greater]))
 			imps_b[down] = pos;
 		stack = stack->next;
 		++pos;
 	}
-	stack = prog->stack_b->prev;
-	pos = 0;
-	while (pos < prog->b_size && !imps_b[up])
+	stack = prog->stack_b;
+	pos = 1;
+	while (pos <= prog->b_size && !imps_b[up])
 	{
-		if (*(int *)stack->content < *(int *)stack->prev->content
-				&& *(int *)stack->content != prog->limits_a[lower]
-				&& *(int *)stack->prev->content != prog->limits_a[greater])
+		if (*(int *)stack->content > *(int *)stack->prev->content
+				&& (*(int *)stack->content != prog->limits_b[greater]
+				|| *(int *)stack->prev->content != prog->limits_b[lower]))
 			imps_b[up] = pos;
 		stack = stack->prev;
 		++pos;
@@ -57,23 +57,23 @@ static void	observe_stack_a(t_prog *prog, int imps_a[2])
 	int		pos;
 
 	stack = prog->stack_a;
-	pos = 0;
-	while (pos < prog->a_size && !imps_a[down])
+	pos = 1;
+	while (pos <= prog->a_size && !imps_a[down])
 	{
 		if (*(int *)stack->content > *(int *)stack->next->content
-				&& *(int *)stack->content != prog->limits_a[greater]
-				&& *(int *)stack->next->content != prog->limits_a[lower])
+				&& (*(int *)stack->content != prog->limits_a[greater]
+				|| *(int *)stack->next->content != prog->limits_a[lower]))
 			imps_a[down] = pos;
 		stack = stack->next;
 		++pos;
 	}
-	stack = prog->stack_a->prev;
-	pos = 0;
-	while (pos < prog->a_size && !imps_a[up])
+	stack = prog->stack_a;
+	pos = 1;
+	while (pos <= prog->a_size && !imps_a[up])
 	{
 		if (*(int *)stack->content < *(int *)stack->prev->content
-				&& *(int *)stack->content != prog->limits_a[lower]
-				&& *(int *)stack->prev->content != prog->limits_a[greater])
+				&& (*(int *)stack->content != prog->limits_a[lower]
+				|| *(int *)stack->prev->content != prog->limits_a[greater]))
 			imps_a[up] = pos;
 		stack = stack->prev;
 		++pos;

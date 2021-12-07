@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:38:50 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/06 00:45:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/06 22:22:41 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,8 @@ static void	deal(t_dlist *a, t_dlist *b, t_act *preds[3])
 		return ;
 	if (preds[0] == pscm_pb)
 	{
-		if (*(int *)a->content > *(int *)b->content)
-		{
-			preds[1] = NULL;
-			return ;
-		}
 		if (preds[1] == pscm_sb || preds[1] == pscm_rb || preds[1] == pscm_rrb)
 			preds[0] = preds[1];
-		else if (*(int *)a->content > *(int *)b->next->content)
-			preds[0] = pscm_rb;
-		else if (*(int *)a->content > *(int *)b->prev->content)
-			preds[0] = pscm_rrb;
 		else
 		{
 			preds[1] = NULL;
@@ -68,17 +59,17 @@ static t_act	*predict_b(t_prog *prog, int obs[2])
 {
 	int		comp[4];
 
-	if (!(obs[down] + obs[up]))
+	if (!obs[down])
 		return (NULL);
 	comp[item] = *(int *)prog->stack_b->content;
 	comp[next] = *(int *)prog->stack_b->next->content;
 	comp[nxt2] = *(int *)prog->stack_b->next->next->content;
-	comp[prev] = *(int *)prog->stack_b->prev->content;
-	if (comp[item] > comp[next] && (comp[item] <= comp[nxt2]))
+	if ((comp[item] < comp[next] || comp[next] < comp[nxt2])
+		&& (comp[item] > comp[nxt2] || comp[nxt2] == prog->limits_b[greater]))
 		return (pscm_sb);
-	else if (obs[down] >= obs[up] && comp[item] > comp[prev])
+	else if (obs[down] < obs[up] && obs[down] != 1)
 		return (pscm_rb);
-	else if (obs[down] < obs[up] && comp[item] < comp[next])
+	else if (obs[down] > obs[up])
 		return (pscm_rrb);
 	return (pscm_pa);
 }
@@ -92,17 +83,17 @@ static t_act	*predict_a(t_prog *prog, int obs[2])
 {
 	int		comp[4];
 
-	if (!(obs[down] + obs[up]))
+	if (!obs[down])
 		return (NULL);
 	comp[item] = *(int *)prog->stack_a->content;
 	comp[next] = *(int *)prog->stack_a->next->content;
 	comp[nxt2] = *(int *)prog->stack_a->next->next->content;
-	comp[prev] = *(int *)prog->stack_a->prev->content;
-	if (comp[item] > comp[next] && (comp[item] <= comp[nxt2]))
+	if ((comp[item] > comp[next] || comp[next] > comp[nxt2])
+		&& (comp[item] < comp[nxt2] || comp[nxt2] == prog->limits_b[lower]))
 		return (pscm_sa);
-	else if (obs[down] >= obs[up] && comp[item] > comp[prev])
+	else if (obs[down] < obs[up] && obs[down] != 1)
 		return (pscm_ra);
-	else if (obs[down] < obs[up] && comp[item] < comp[next])
+	else if (obs[down] > obs[up])
 		return (pscm_rra);
 	return (pscm_pb);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pse_try_parse_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otakuocidental <otakuocidental@student.    +#+  +:+       +#+        */
+/*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/21 15:22:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/06 12:42:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 ** Search for duplicates.
 */
 
-static int	check_next(int next, int i, int *pre_stack)
+static int	check_next(long int next, int i, int *pre_stack)
 {
 	int		n;
 
 	n = 0;
 	while (n < i)
 	{
-		if (next == pre_stack[n])
+		if (next == pre_stack[n] || (next < INT_MIN || next > INT_MAX))
 		{
 			free(pre_stack);
 			ft_putendl_fd("Error", 1);
@@ -47,9 +47,10 @@ static int	check_next(int next, int i, int *pre_stack)
 
 int	*pse_try_parse_args(int argc, char **argv)
 {
-	int		*pre_stack;
-	int		next;
-	int		i;
+	long int	item;
+	long int	next;
+	int			*pre_stack;
+	int			i;
 
 	pre_stack = ft_calloc(argc - 1, sizeof(int));
 	if (!pre_stack)
@@ -58,11 +59,13 @@ int	*pse_try_parse_args(int argc, char **argv)
 		exit(0);
 	}
 	i = 1;
-	pre_stack[0] = ft_atoi(argv[i]);
+	item = ft_atol(argv[i]);
+	if (item >= INT_MIN && item <= INT_MAX)
+		pre_stack[0] = item;
 	while (i < argc - 1)
 	{
 		++i;
-		next = ft_atoi(argv[i]);
+		next = ft_atol(argv[i]);
 		pre_stack[i - 1] = check_next(next, i - 1, pre_stack);
 	}
 	return (pre_stack);
