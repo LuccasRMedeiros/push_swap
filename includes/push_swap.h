@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/05 23:56:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:03:26 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ enum	e_stacks
 
 enum	e_limits
 {
-	lower,
-	greater,
+	l,
+	g,
 };
 
 /*
@@ -50,6 +50,7 @@ enum	e_item
 	next,
 	nxt2,
 	prev,
+	prv2,
 };
 
 /*
@@ -63,18 +64,43 @@ enum	e_imperfection
 };
 
 /*
+** Which index represent a action.
+*/
+
+enum	e_action
+{
+	act1,
+	act2,
+	extr,
+	wait,
+};
+
+/*
+** The s_stack is a double linked list like structure that not only points to it
+** next and previous node but also carries it position in the tournament rank.
+*/
+
+typedef struct	s_stack
+{
+	int				item;
+	size_t			pos;
+	size_t			rank;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}	t_stack;
+
+/*
 ** The s_prog is a "header" to provide all the information the program need to
 ** sort the stack.
 */
 
 typedef struct	s_prog
 {
-	int		*pre_stack;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 	int		limits_a[2];
 	int		limits_b[2];
-	t_dlist	*stack_a;
 	int		a_size;
-	t_dlist	*stack_b;
 	int		b_size;
 }	t_prog;
 
@@ -90,8 +116,11 @@ typedef	void	(t_act)(t_prog **prog);
 ** Functions for mainly initialization and destruction of structures objects.
 */
 
-void	del_item(void *int_n);
+t_stack	*add(int item, size_t rank, t_stack *stack);
+void	del_stack(t_stack *del);
 void	end_prog(t_prog **prog);
-t_prog	*init_prog(int *pre_stack, int size);
+t_prog	*init_prog(int argc, char **argv);
+t_stack	*new_stack(size_t n_nodes);
+t_stack	*pop(t_stack *stack);
 
 #endif

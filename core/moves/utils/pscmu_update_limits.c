@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 16:09:21 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/06 00:59:53 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/07 21:53:18 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	tournament_b(t_dlist *stack_b, int limits_b[2])
 			g_champion = challenger;
 		stack_b = stack_b->next;
 	}
-	limits_b[lower] = l_champion;
-	limits_b[greater] = g_champion;
+	limits_b[l] = l_champion;
+	limits_b[g] = g_champion;
 }
 
 /*
@@ -64,8 +64,8 @@ static void	tournament_a(t_dlist *stack_a, int limits_a[2])
 			g_champion = challenger;
 		stack_a = stack_a->next;
 	}
-	limits_a[lower] = l_champion;
-	limits_a[greater] = g_champion;
+	limits_a[l] = l_champion;
+	limits_a[g] = g_champion;
 }
 
 /*

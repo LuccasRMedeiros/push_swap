@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_prog.c                                         :+:      :+:    :+:   */
+/*   psc_is_stack_b_move.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 04:08:15 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/10 23:38:19 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/10 23:38:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include <push_swap_core.h>
 
 /*
-** Clean the stacks.
+** Check if the movement is part of the stack B only movements or it is pa.
+**
+** Case positive it return 1, otherwise it will be 0.
 */
 
-void	end_prog(t_prog **prog)
+int	psc_is_stack_b_move(t_act *pred)
 {
-	t_prog	*aux;
-
-	aux = *prog;
-	if (!aux->pre_stack)
-		return ;
-	if (aux->stack_a)
-		del_stack(aux->stack_a);
-	if (aux->stack_b)
-		del_stack(aux->stack_b);
-	free(aux->pre_stack);
-	aux->pre_stack = NULL;
-	aux->a_size = 0;
-	aux->b_size = 0;
-	free(aux);
-	aux = NULL;
-	*prog = NULL;
+	if (pred == pscm_rb || pred == pscm_rrb 
+			|| pred == pscm_sb || pred == pscm_pa)
+		return (1);
+	return (0);
 }

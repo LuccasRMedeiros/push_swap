@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 12:32:08 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/06 16:05:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/12 13:34:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@
 ** the loop allowign the program to finish.
 */
 
-void	psc_act(t_prog *prog)
+void	psc_act(t_prog *prog, t_act *acts[4])
 {
-	t_act	*preds[2];
 	int		obs[2][2];
 	size_t	act_i;
 
-	preds[0] = NULL;
-	preds[1] = NULL;
 	psc_observe(prog, obs);
 	act_i = 0;
 	if (!((obs[stk_a][down] + obs[stk_a][up])
@@ -38,14 +35,14 @@ void	psc_act(t_prog *prog)
 		psc_merge(prog);
 		return ;
 	}
-	psc_predict(prog, obs, preds);
-	if (!preds[0] && !preds[1])
+	psc_predict(prog, obs, acts);
+	if (!acts[act1] && !acts[act2])
 		return ;
-	while (act_i < 2)
+	while (act_i < 3)
 	{
-		if (preds[act_i])
-			preds[act_i](&prog);
+		if (acts[act_i])
+			acts[act_i](&prog);
 		++act_i;
 	}
-	psc_act(prog);
+	psc_act(prog, acts);
 }

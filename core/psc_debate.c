@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_prog.c                                         :+:      :+:    :+:   */
+/*   psc_debate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 04:08:15 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/11 10:58:26 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/12 13:34:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include <push_swap_core.h>
 
 /*
-** Clean the stacks.
+** Refine the course of action.
 */
 
-void	end_prog(t_prog **prog)
+void	debate(t_prog *prog, t_act *preds[3])
 {
-	t_prog	*aux;
-
-	aux = *prog;
-	if (!aux->pre_stack)
+	if (prog->a_size <= 2 || !prog->b_size <= 2)
 		return ;
-	if (aux->stack_a)
-		del_stack(aux->stack_a);
-	if (aux->stack_b)
-		del_stack(aux->stack_b);
-	free(aux->pre_stack);
-	aux->pre_stack = NULL;
-	aux->a_size = 0;
-	aux->b_size = 0;
-	free(aux);
-	aux = NULL;
-	*prog = NULL;
+	if (preds[act1] == pscm_pb || preds[act2] == pscm_pa)
 }
+

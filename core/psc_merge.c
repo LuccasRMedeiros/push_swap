@@ -6,34 +6,11 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:33:27 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/06 22:59:00 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/07 22:37:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core.h>
-
-void print_stacks(t_prog *prog)
-{
-	t_dlist *stack_a = prog->stack_a;
-	t_dlist *tail_a = stack_a->prev;
-	t_dlist *stack_b = prog->stack_b;
-	t_dlist *tail_b = stack_b->prev;
-
-	while (stack_a != tail_a)
-	{
-		printf("A: \e[1;31m%i\e[0m\n", *(int *)stack_a->content);
-		stack_a = stack_a->next;
-	}
-	if (stack_a->content)
-		printf("A: \e[1;31m%i\e[0m\n", *(int *)stack_a->content);
-	while (stack_b != tail_b)
-	{
-		printf("B: \e[1;33m%i\e[0m\n", *(int *)stack_b->content);
-		stack_b = stack_b->next;
-	}
-	if (stack_b->content)
-		printf("B: \e[1;33m%i\e[0m\n", *(int *)stack_b->content);	
-}
 
 /*
 ** Rotate stack_a till all the items be correctly placed.
@@ -74,18 +51,20 @@ static int	search(t_prog *prog)
 {
 	t_dlist	*stack_a;
 	int		best;
-	int		top_b;
 	int		loc;
 	int		place;
 
 	stack_a = prog->stack_a;
-	best = prog->limits_a[greater];
-	top_b = *(int *)prog->stack_b->content;
+	best = prog->limits_a[g];
+	if (best < *(int *)prog->stack_b->content)
+		best = prog->limits_a[l];
 	loc = 0;
 	place = 0;
 	while (loc < prog->a_size)
 	{
-		if (*(int *)stack_a->content > top_b && *(int *)stack_a->content < best)
+		if ((*(int *)stack_a->content > *(int *)prog->stack_b->content
+			&& *(int *)stack_a->content < best)
+			|| *(int *)stack_a->content == best)
 		{
 			place = loc;
 			best = *(int *)stack_a->content;
@@ -93,8 +72,6 @@ static int	search(t_prog *prog)
 		stack_a = stack_a->next;
 		++loc;
 	}
-	if (!place && (*(int *)stack_a->content > *(int *)stack_a->prev->content))
-		place = loc - 1;
 	return (place);
 }
 
@@ -107,7 +84,6 @@ void	psc_merge(t_prog *prog)
 	int		n_rots;
 	t_act	*rot;
 
-	print_stacks(prog);
 	if (!prog->b_size)
 	{
 		organize(prog);

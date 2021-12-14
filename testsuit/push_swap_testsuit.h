@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_prog.c                                         :+:      :+:    :+:   */
+/*   push_swap_testsuit.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 04:08:15 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/14 01:17:10 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/14 01:25:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
-
 /*
-** Clean the stacks.
+** Includes all the dependencies, difines the macros, enums, structs and what
+** else the tester needs.
 */
 
-void	end_prog(t_prog **prog)
-{
-	t_prog	*aux;
+#ifndef PUSH_SWAP_TESTSUIT_H
+# define PUSH_SWAP_TESTSUIT_H
 
-	aux = *prog;
-	if (!aux->pre_stack)
-		return ;
-	if (aux->stack_a)
-		del_stack(aux->stack_a);
-	if (aux->stack_b)
-		del_stack(aux->stack_b);
-	free(aux->pre_stack);
-	aux->pre_stack = NULL;
-	aux->a_size = 0;
-	aux->b_size = 0;
-	free(aux);
-	aux = NULL;
-	*prog = NULL;
-}
+# include <stdio.h>
+# include <push_swap.h>
+
+typedef int (t_test)(void);
+
+#endif

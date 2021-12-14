@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_prog.c                                        :+:      :+:    :+:   */
+/*   del_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 23:32:42 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/12 19:58:38 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/14 00:47:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
 /*
+** Delete a t_stack instance.
 */
 
-t_prog	*init_prog(int argc, char **argv)
+void	del_stack(t_stack *del)
 {
-	t_prog	*prog;
+	t_stack	*head;
+	t_stack *aux;
 
-	prog = malloc(sizeof(*prog));
-	if (!prog)
-		return (NULL);
-	prog->stack_a = new_stack(size);
-	if (!prog->stack_a)
+	head = del;
+	aux = del->next;
+	while (del->next != head || del->next == NULL)
 	{
-		free(prog);
-		return (NULL);
+		ft_bzero(del, sizeof(*del));
+		free(del);
+		del = NULL;
+		del = aux;
+		aux = del->next;
 	}
-	prog->a_size = size;
-	prog->stack_b = new_stack(1);
-	if (!prog->stack_b)
-	{
-		del_stack(prog->stack_a);
-		free(prog);
-		return (NULL);
-	}
-	prog->b_size = 0;
-	init_limits(prog);
-	return (prog);
+	head = NULL;
+	aux = NULL;
+	ft_bzero(del, sizeof(*del));
+	free(del);
+	del = NULL;
 }

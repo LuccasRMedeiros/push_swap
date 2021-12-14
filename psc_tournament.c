@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_item.c                                         :+:      :+:    :+:   */
+/*   psc_tournament.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 15:52:50 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/20 12:51:24 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/12 13:23:43 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/12 13:34:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include <push_swap_core.h>
 
 /*
-** Delete a int inside a stack.
+** Make a tournament to decide the order of each item and return the rank.
+**
+** The rank will be a pointer to pointer of void where the first pointer index
+** represent the rank itself and the second pointer represents the pointer of
+** the item.
 */
 
-void	del_item(void *int_n)
+void	**psc_tournament(t_prog *prog)
 {
-	*(int *)int_n = 0;
-}
+	void	**rank;
+
+	rank = ft_calloc()
