@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:51:57 by lrocigno          #+#    #+#              #
-#    Updated: 2021/12/14 00:05:09 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/12/14 21:09:30 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,15 @@ INCLUDES =	-I ../includes/ \
 DEPS =	-L ./ -lpushswap \
 		-L ../libs/libft/ -lft \
 
-SRC =
+SRC =	count_tests.c \
+		set_test.c \
 
 OBJ = $(SRC:%.c=%.o)
 
 all: make_push $(NAME)
 	./$(NAME)
+
+try: fclean $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(SANITIZERS) $(INCLUDES) push_swap_testsuit.c -o $(NAME) $(OBJ) $(DEPS)
@@ -54,4 +57,4 @@ make_push:
 
 re: fclean all
 
-.PHONY: all clean fclean make_push re
+.PHONY: all clean fclean make_push re try

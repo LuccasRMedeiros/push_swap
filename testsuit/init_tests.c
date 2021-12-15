@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_testsuit.h                               :+:      :+:    :+:   */
+/*   init_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 01:17:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/15 00:19:16 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/14 17:39:40 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/14 20:11:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap_testsuit.h"
+
 /*
-** Includes all the dependencies, difines the macros, enums, structs and what
-** else the tester needs.
+** Create a instance of t_tests and inject the functions it needs in it.
 */
 
-#ifndef PUSH_SWAP_TESTSUIT_H
-# define PUSH_SWAP_TESTSUIT_H
+t_tests	init_tests(void)
+{
+	t_tests ret;
+	t_test	*put[1];
 
-# include <stdio.h>
-# include <push_swap.h>
+	put[0] = NULL;
+	ret.tests = put;
+	ret.set_test = set_test;
+	ret.count_tests = count_tests;
 
-typedef int	(t_test)(void);
-
-void	set_test(t_test *test, t_test ***tests);
-size_t	count_tests(t_test **tests);
-
-#endif
+	return (ret);
+}

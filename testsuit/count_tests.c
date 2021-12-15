@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_testsuit.h                               :+:      :+:    :+:   */
+/*   count_tests.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 01:17:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/15 00:19:16 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/14 15:55:40 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/12/15 00:24:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap_testsuit.h"
+
 /*
-** Includes all the dependencies, difines the macros, enums, structs and what
-** else the tester needs.
+** Count the amount of tests on the test list.
 */
 
-#ifndef PUSH_SWAP_TESTSUIT_H
-# define PUSH_SWAP_TESTSUIT_H
+size_t	count_tests(t_test **tests)
+{
+	size_t	count = 0;
+	t_test	**aux = tests;
 
-# include <stdio.h>
-# include <push_swap.h>
+	if (!tests)
+		return (0);
+	
+	while (aux[count])
+		++count;
 
-typedef int	(t_test)(void);
-
-void	set_test(t_test *test, t_test ***tests);
-size_t	count_tests(t_test **tests);
-
-#endif
+	return (count);
+}
