@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:51:57 by lrocigno          #+#    #+#              #
-#    Updated: 2021/12/14 21:09:30 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/12/15 12:46:34 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ DEPS =	-L ./ -lpushswap \
 		-L ../libs/libft/ -lft \
 
 SRC =	count_tests.c \
+		init_tests.c \
 		set_test.c \
 
 OBJ = $(SRC:%.c=%.o)
@@ -45,7 +46,7 @@ clean:
 	@rm -f *.o
 	@echo "Cleaned all the objects."
 
-fclean:
+fclean: clean
 	@rm -f libpushswap.a
 	@rm -f $(NAME)
 	@echo "Static library and executable were deleted."

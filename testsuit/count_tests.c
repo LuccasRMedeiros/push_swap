@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:55:40 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/15 00:24:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/15 12:39:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@
 size_t	count_tests(t_test **tests)
 {
 	size_t	count = 0;
-	t_test	**aux = tests;
 
-	if (!tests)
-		return (0);
-	
-	while (aux[count])
+	while (tests[count] != NULL)
 		++count;
 
 	return (count);

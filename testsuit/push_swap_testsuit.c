@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 17:27:12 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/14 23:47:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:09:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	test_if_add_update_the_positions_correctly(void)
 	t_stack	*stack = new_stack(n_nodes);
 
 	stack = add(0, 0, stack);
-	for (size_t pos = 0; pos <= n_nodes + 1; ++pos)
+	for (size_t pos = 1; pos <= n_nodes + 1; ++pos)
 	{
 		if (stack->pos != pos)
 		{
@@ -27,6 +27,7 @@ static int	test_if_add_update_the_positions_correctly(void)
 			del_stack(stack);
 			return (0);
 		}
+		stack = stack->next;
 	}
 	del_stack(stack);
 	return (1);
@@ -38,8 +39,8 @@ static int	test_if_add_adds_a_new_node_at_the_top_of_stack(void)
 	t_stack	*stack = new_stack(n_nodes);
 	stack->item = 1;
 
-	stack = add(0, 0, stack);
-	if (stack->item == 1)
+	stack = add(2, 0, stack);
+	if (stack->item != 2)
 	{
 		printf("\e[0;31madd has failed to place a new node at the top of the stack\e[0m\n");
 		del_stack(stack);
@@ -173,17 +174,17 @@ static int	test_if_new_stack_return_a_stack_with_the_total_amount_of_nodes_asked
 
 int	main(void)
 {
-	t_test	**tests = NULL;
+	t_test	**tests = init_tests();
 
-	set_test(test_if_new_stack_return_a_stack_with_the_total_amount_of_nodes_asked, &tests);
-	set_test(test_if_all_the_positions_are_correct, &tests);
-	set_test(test_if_pop_remove_the_top_node, &tests);
-	set_test(test_if_pop_update_correctly_all_the_positions, &tests);
-	set_test(test_if_pop_the_third_node_still_updating_correctly_all_the_positions, &tests);
-	set_test(test_if_add_adds_a_new_node_at_the_top_of_stack, &tests);
-	set_test(test_if_add_update_the_positions_correctly, &tests);
+	tests = set_test(test_if_new_stack_return_a_stack_with_the_total_amount_of_nodes_asked, tests);
+	tests = set_test(test_if_all_the_positions_are_correct, tests);
+	tests = set_test(test_if_pop_remove_the_top_node, tests);
+	tests = set_test(test_if_pop_update_correctly_all_the_positions, tests);
+	tests = set_test(test_if_pop_the_third_node_still_updating_correctly_all_the_positions, tests);
+	tests = set_test(test_if_add_adds_a_new_node_at_the_top_of_stack, tests);
+	tests = set_test(test_if_add_update_the_positions_correctly, tests);
 
-	printf("====================================================================\n");
+	printf("====================================================================\n\n");
 	
 	int 	success = 0;
 	size_t	test_n = 0;
@@ -194,10 +195,16 @@ int	main(void)
 		++test_n;
 	}
 
+	free(tests);
+	tests = NULL;
+
 	printf("\n--------------------------------------------------------------------\n");
 	if (success == (int)total_tests)
 		printf("\n\e[0;32mAll the %zu tests are passing!\e[0m\n", total_tests);
 	else
+	{
 		printf("\nSome tests had failed.\n");
+		printf("%i of %zu were successfully completed.\n", success, total_tests);
+	}
 	return (0);
 }

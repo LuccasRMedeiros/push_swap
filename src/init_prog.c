@@ -6,16 +6,18 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 23:32:42 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:49:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
 /*
+** Initialize a t_prog instance using the pre_stack formed during the check up
+** of the arguments.
 */
 
-t_prog	*init_prog(int argc, char **argv)
+t_prog	*init_prog(int argc, int *pre_stack)
 {
 	t_prog	*prog;
 
