@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/12/14 00:03:26 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/12/16 22:44:23 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,13 @@ INCLUDES =	-I ./libs/libft/ \
 	  		-I ./includes/ \
 
 BASE =	add.c \
-		new_stack.c \
 		del_stack.c \
-		pop.c \
-#		init_prog.c \
 		end_prog.c \
+		init_prog.c \
+		new_stack.c \
+		pop.c \
 
-#MD_ERROR =	pse_check_args.c \
+MD_ERROR =	pse_check_args.c \
 			pse_try_parse_args.c \
 
 #MD_CORE =	psc_act.c \
@@ -73,7 +73,7 @@ BASE =	add.c \
 #MD_CORE_MOVES_UTILS =	pscmu_update_limits.c \
 
 SRC =	$(BASE) \
-#		$(MD_ERROR) \
+		$(MD_ERROR) \
 #		$(MD_CORE) \
 #		$(MD_CORE_MOVES) \
 #		$(MD_CORE_MOVES_UTILS) \

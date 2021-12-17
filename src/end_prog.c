@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 04:08:15 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:45:25 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ void	end_prog(t_prog **prog)
 		del_stack(aux->stack_a);
 	if (aux->stack_b)
 		del_stack(aux->stack_b);
-	free(aux->pre_stack);
-	aux->pre_stack = NULL;
 	aux->a_size = 0;
 	aux->b_size = 0;
+	ft_bzero(aux, sizeof(*aux));
 	free(aux);
-	aux = NULL;
 	*prog = NULL;
 }

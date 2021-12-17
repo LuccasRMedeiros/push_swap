@@ -6,11 +6,19 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 17:27:12 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/15 13:09:19 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/12/16 23:05:54 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_testsuit.h"
+
+static int	test_if_delete_stack_behave_normally_with_only_one_node_on_stack(void)
+{
+	t_stack	*stack = new_stack(1);
+	del_stack(stack);
+	
+	return (1);
+}
 
 static int	test_if_add_update_the_positions_correctly(void)
 {
@@ -183,6 +191,7 @@ int	main(void)
 	tests = set_test(test_if_pop_the_third_node_still_updating_correctly_all_the_positions, tests);
 	tests = set_test(test_if_add_adds_a_new_node_at_the_top_of_stack, tests);
 	tests = set_test(test_if_add_update_the_positions_correctly, tests);
+	tests = set_test(test_if_delete_stack_behave_normally_with_only_one_node_on_stack, tests);
 
 	printf("====================================================================\n\n");
 	
