@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2022/01/06 16:31:11 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/07 15:23:36 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ MD_CORE =	psc_find_next_a.c \
 			psc_is_both_mv.c \
 			psc_is_stack_a_mv.c \
 			psc_is_stack_b_mv.c \
+			psc_merge.c \
 			psc_observe.c \
 			psc_predict.c \
 

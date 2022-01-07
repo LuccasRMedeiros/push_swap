@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 21:54:15 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 16:28:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,27 @@
 ** will exit itself letting the program to finish.
 */
 
-void	sort(t_prog *prog, t_act *acts[3])
+void	sort(t_prog *prog, t_act *preds[3])
 {
 	size_t	act;
 
 	act = 0;
-	psc_predict(prog, acts);
-	if (!acts[act1] && !acts[act2])
+	psc_predict(prog, preds);
+	if (!preds[act1] && !preds[act2] && !preds[await])
 	{
-//		psc_merge(prog);
+		psc_merge(prog);
 		return ;
 	}
 	while (act < await)
 	{
-		if (acts[act])
+		if (preds[act])
 		{
-			acts[act](&prog);
-			acts[act] = NULL;
+			preds[act](&prog);
+			preds[act] = NULL;
 		}
 		++act;
 	}
-	sort(prog, acts);
+	sort(prog, preds);
 }
 
 /*

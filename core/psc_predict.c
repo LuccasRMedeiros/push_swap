@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:38:50 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 23:20:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 16:54:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	refine(t_act *prds[3], int obs[2][2])
 		prds[await] = prds[act1];
 	else if (prds[act1] == pscm_sa && prds[act2])
 		prds[await] = prds[act1];
-	else if (prds[act2] == pscm_sb && prds[act2])
+	else if (prds[act2] == pscm_sb && prds[act1])
 		prds[await] = prds[act2];
 	else if (prds[act1] == pscm_ra && prds[act2] && obs[a][d] < obs[b][d])
 		prds[await] = prds[act1];
@@ -62,6 +62,10 @@ static t_act	*predict_b(t_prog *prog, int obs[2])
 			return (pscm_sb);
 	else if (ds[t] == 1)
 		return (pscm_sb);
+	else if (prog->stack_b->next->rank - prog->stack_a->rank == 1 && ds[n])
+		return (pscm_sb);
+	else if (prog->stack_b->rank - prog->stack_a->prev->rank == 1)
+		return (pscm_pa);
 	else if ((ds[n] < ds[p] || !ds[p]) && ds[n] >= 1)
 		return (pscm_rb);
 	else if ((ds[p] < ds[n] || !ds[n]) && ds[p] >= 1)
@@ -89,11 +93,12 @@ static t_act	*predict_a(t_prog *prog, int obs[2])
 	ds[p] = psc_find_next_a(prog->stack_a->prev, prog->lts_a, prog->a_size);
 	if (one_quarter > 0 && (ds[t] >= 1 && ds[t] <= one_quarter))
 			return (pscm_sa);
-	else if (ds[t] == 1)
+	else if (ds[t] == 1 && ds[n] > 1)
 		return (pscm_sa);
 	else if (prog->stack_a->rank - prog->stack_a->next->rank == 1 && ds[n])
 		return (pscm_sa);
-	else if (prog->stack_a->rank > (size_t)prog->total_items / 2)
+	else if (prog->stack_a->rank > (size_t)prog->total_items / 2 &&
+			ds[t] > 1)
 		return (pscm_pb);
 	else if ((ds[n] < ds[p] || !ds[p]) && ds[n] >= 1)
 		return (pscm_ra);
@@ -125,14 +130,14 @@ void	psc_predict(t_prog *prog, t_act *preds[3])
 		preds[act1] = preds[await];
 		preds[await] = NULL;
 	}
-	else if (prog->a_size > 2)
+	else if (prog->a_size > 2 && obs[a][d] != prog->a_size)
 		preds[act1] = predict_a(prog, obs[a]);
 	if (psc_is_stack_b_mv(preds[await]))
 	{
 		preds[act2] = preds[await];
 		preds[await] = NULL;
 	}
-	else if (prog->b_size > 2)
+	else if (prog->b_size > 2 && obs[b][d] != prog->b_size)
 		preds[act2] = predict_b(prog, obs[b]);
 	refine(preds, obs);
 }

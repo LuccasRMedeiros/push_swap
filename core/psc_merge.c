@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:33:27 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 16:05:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 16:33:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,28 @@
 
 static void	organize(t_prog *prog)
 {
-	int		n_rots;
-	t_dlist	*stack_a;
+	int		dist;
+	t_stack	*a;
 	t_act	*rot;
 
-	n_rots = 1;
-	stack_a = prog->stack_a;
-	while (*(int *)stack_a->content < *(int *)stack_a->next->content)
+	dist = 0;
+	a = prog->stack_a;
+	while (a->rank != 1)
 	{
-		stack_a = stack_a->next;
-		++n_rots;
+		a = a->next;
+		++dist;
 	}
-	if (n_rots <= prog->a_size / 2)
+	if (dist <= prog->a_size / 2)
 		rot = pscm_ra;
 	else
 	{
 		rot = pscm_rra;
-		n_rots = prog->a_size - n_rots;
+		dist = prog->a_size - dist;
 	}
-	while (n_rots)
+	while (dist)
 	{
 		rot(&prog);
-		--n_rots;
+		--dist;
 	}
 }
 
@@ -50,26 +50,18 @@ static void	organize(t_prog *prog)
 static int	search(t_prog *prog)
 {
 	t_stack	*a;
+	t_stack	*b;
+	int		dist;
 
 	a = prog->stack_a;
-	best = prog->limits_a[g];
-	if (best < *(int *)prog->stack_b->content)
-		best = prog->limits_a[l];
-	loc = 0;
-	place = 0;
-	while (loc < prog->a_size)
+	b = prog->stack_b;
+	dist = 0;
+	while (b->rank - a->prev->rank != 1 && a->rank - b->rank != 1)
 	{
-		if ((*(int *)stack_a->content > *(int *)prog->stack_b->content
-			&& *(int *)stack_a->content < best)
-			|| *(int *)stack_a->content == best)
-		{
-			place = loc;
-			best = *(int *)stack_a->content;
-		}
-		stack_a = stack_a->next;
-		++loc;
+		++dist;
+		a = a->next;
 	}
-	return (place);
+	return (dist);
 }
 
 /*
@@ -78,7 +70,7 @@ static int	search(t_prog *prog)
 
 void	psc_merge(t_prog *prog)
 {
-	int		n_rots;
+	int		dist;
 	t_act	*rot;
 
 	if (!prog->b_size)
@@ -86,18 +78,18 @@ void	psc_merge(t_prog *prog)
 		organize(prog);
 		return ;
 	}
-	n_rots = search(prog);
-	if (n_rots <= prog->a_size / 2)
+	dist = search(prog);
+	if (dist <= prog->a_size / 2)
 		rot = pscm_ra;
 	else
 	{
 		rot = pscm_rra;
-		n_rots = prog->a_size - n_rots;
+		dist = prog->a_size - dist;
 	}
-	while (n_rots)
+	while (dist)
 	{
 		rot(&prog);
-		--n_rots;
+		--dist;
 	}
 	pscm_pa(&prog);
 	psc_merge(prog);

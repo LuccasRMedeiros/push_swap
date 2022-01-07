@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:04:59 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 22:55:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 15:29:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	observe_b(t_prog *prog, int obs[2])
 	b = prog->stack_b;
 	while (obs[d] < prog->b_size)
 	{
-		if ((b->next->rank - b->rank != 1) ||
-				(b->rank == prog->lts_b[l] && b->next->rank != prog->lts_b[g]))
+		if ((b->rank < b->next->rank) &&
+				(b->rank != prog->lts_b[l] || b->next->rank != prog->lts_b[g]))
 			break;
 		obs[d] += 1;
 		b = b->next;
@@ -33,8 +33,8 @@ static void	observe_b(t_prog *prog, int obs[2])
 	b = prog->stack_b;
 	while (obs[u] < prog->b_size)
 	{
-		if ((b->rank - b->prev->rank != 1) ||
-				(b->rank == prog->lts_b[g] && b->prev->rank != prog->lts_b[l]))
+		if ((b->rank > b->prev->rank) &&
+				(b->rank != prog->lts_b[g] || b->prev->rank != prog->lts_b[l]))
 			return ;
 		obs[u] += 1;
 		b = b->prev;
@@ -56,8 +56,8 @@ static void	observe_a(t_prog *prog, int obs[2])
 	a = prog->stack_a;
 	while (obs[d] < (int)prog->a_size)
 	{
-		if ((a->next->rank - a->rank != 1) ||
-				(a->rank == prog->lts_a[g] && a->next->rank != prog->lts_a[l]))
+		if ((a->rank > a->next->rank) &&
+				(a->rank != prog->lts_a[g] || a->next->rank != prog->lts_a[l]))
 			break;
 		obs[d] += 1;
 		a = a->next;
@@ -65,8 +65,8 @@ static void	observe_a(t_prog *prog, int obs[2])
 	a = prog->stack_a;
 	while (obs[u] < (int)prog->a_size)
 	{
-		if ((a->rank - a->prev->rank != 1) ||
-				(a->rank == prog->lts_a[l] && a->prev->rank != prog->lts_a[g]))
+		if ((a->rank < a->prev->rank) &&
+				(a->rank != prog->lts_a[l] || a->prev->rank != prog->lts_a[g]))
 			return ;
 		obs[u] += 1;
 		a = a->prev;
