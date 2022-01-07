@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psc_is_stack_b_move.c                              :+:      :+:    :+:   */
+/*   copy.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 23:38:19 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/10 23:38:59 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/03 11:38:25 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/03 23:41:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_core.h>
+#include <push_swap.h>
 
 /*
-** Check if the movement is part of the stack B only movements or it is pa.
-**
-** Case positive it return 1, otherwise it will be 0.
+** Copy a node from stack src to stack dst then return dst.
 */
 
-int	psc_is_stack_b_move(t_act *pred)
+t_stack	*copy(t_stack *src, t_stack *dst)
 {
-	if (pred == pscm_rb || pred == pscm_rrb 
-			|| pred == pscm_sb || pred == pscm_pa)
-		return (1);
-	return (0);
+	t_stack	*copy;
+
+	copy = new_stack(1);
+	copy->item = src->item;
+	copy->rank = src->rank;
+	copy->next = dst;
+	copy->prev = dst->prev;
+	copy->prev->next = copy;
+	dst->prev = copy;
+	return (copy);
 }

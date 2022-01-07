@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_prog.c                                         :+:      :+:    :+:   */
+/*   find_limits.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 23:12:57 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/17 14:44:17 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/12/20 12:06:16 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/06 22:46:40 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
 /*
-** Clean the stacks.
+** Find which is the first and the last rank present in the stack.
 */
 
-void	end_prog(t_prog **prog)
+void	find_limits(t_stack *stack, size_t lts[2], size_t s)
 {
-	t_prog	*aux;
+	t_stack	*aux;
+	size_t	node_n;
 
-	aux = *prog;
-	if (!aux)
+	aux = stack;
+	node_n = 1;
+	if (!stack->rank)
+	{
+		lts[l] = 0;
+		lts[g] = 0;
 		return ;
-	if (aux->stack_a)
-		del_stack(aux->stack_a);
-	if (aux->stack_b)
-		del_stack(aux->stack_b);
-	ft_bzero(aux, sizeof(*aux));
-	free(aux);
-	*prog = NULL;
+	}
+	lts[l] = aux->rank;
+	lts[g] = aux->rank;
+	while (node_n <= s)
+	{
+		if (aux->rank < lts[l])
+			lts[l] = aux->rank;
+		else if (aux->rank > lts[g])
+			lts[g] = aux->rank;
+		aux = aux->next;
+		++node_n;
+	}
 }

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscm_pa.c                                          :+:      :+:    :+:   */
+/*   psc_is_both_mv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 22:53:22 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/06 15:23:07 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/06 15:31:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_core_moves.h>
+#include <push_swap_core.h>
 
 /*
-** Push the top item on stack b to the top of stack a.
+** See if a informed movement is part of both stack movements, return 1 case 
+** true, 0 case false.
 */
 
-void	pscm_pa(t_prog **prog)
+int	psc_is_both_mv(t_act *mv)
 {
-	t_prog	*aux;
-
-	aux = *prog;
-	aux->stack_a = copy(aux->stack_b, aux->stack_a);
-	aux->stack_b = pop(aux->stack_b);
-	aux->a_size += 1;
-	aux->b_size -= 1;
-	find_limits(aux->stack_a, aux->lts_a, aux->a_size);
-	find_limits(aux->stack_b, aux->lts_b, aux->b_size);
-	ft_putendl_fd("pa", 1);
+	if (mv == pscm_ss || mv == pscm_rr || mv == pscm_rrr)
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/13 23:03:26 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/06 22:48:16 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 enum	e_stacks
 {
-	stk_a,
-	stk_b,
+	a,
+	b,
 };
 
 /*
@@ -54,13 +54,24 @@ enum	e_item
 };
 
 /*
+** Which index represent the rank in comparison.
+*/
+
+enum	e_cmp
+{
+	t,
+	n,
+	p,
+};
+
+/*
 ** Which index represent the direction of a imperfection.
 */
 
-enum	e_imperfection
+enum	e_dir
 {
-	down,
-	up,
+	d,
+	u,
 };
 
 /*
@@ -71,8 +82,7 @@ enum	e_action
 {
 	act1,
 	act2,
-	extr,
-	wait,
+	await,
 };
 
 /*
@@ -83,7 +93,6 @@ enum	e_action
 typedef struct	s_stack
 {
 	int				item;
-	size_t			pos;
 	size_t			rank;
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -96,10 +105,11 @@ typedef struct	s_stack
 
 typedef struct	s_prog
 {
+	int		total_items;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		limits_a[2];
-	int		limits_b[2];
+	size_t	lts_a[2];
+	size_t	lts_b[2];
 	int		a_size;
 	int		b_size;
 }	t_prog;
@@ -116,11 +126,12 @@ typedef	void	(t_act)(t_prog **prog);
 ** Functions for mainly initialization and destruction of structures objects.
 */
 
-t_stack	*add(int item, size_t rank, t_stack *stack);
+t_stack	*copy(t_stack *src, t_stack *dst);
 void	del_stack(t_stack *del);
 void	end_prog(t_prog **prog);
-t_prog	*init_prog(int argc, char **argv);
+void	find_limits(t_stack *stack, size_t lts[2], size_t s);
+t_prog	*init_prog(int argc, int *pre_stack);
 t_stack	*new_stack(size_t n_nodes);
-t_stack	*pop(t_stack *stack);
+t_stack	*pop(t_stack *src);
 
 #endif

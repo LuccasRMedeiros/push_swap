@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 01:17:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/16 23:05:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:10:25 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 #ifndef PUSH_SWAP_TESTSUIT_H
 # define PUSH_SWAP_TESTSUIT_H
 
-# include <stdio.h>
 # include <signal.h>
-# include <push_swap.h>
+# include <stdio.h>
+# include <string.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
+# include <push_swap_error.h>
 
 typedef int	(t_test)(void);
 

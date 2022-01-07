@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psc_is_stack_a_move.c                              :+:      :+:    :+:   */
+/*   psc_is_stack_b_mv.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 23:17:13 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/10 23:38:01 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/06 15:21:43 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/06 15:31:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core.h>
 
 /*
-** Check if the movement is part of the stack A only movements or it is pb.
-**
-** Case positive it return 1, otherwise it will be 0.
+** See if a informed movement is part of stack B movements, return 1 case true,
+** 0 case false.
 */
 
-int	psc_is_stack_a_move(t_act *pred)
+int	psc_is_stack_b_mv(t_act *mv)
 {
-	if (pred == pscm_ra || pred == pscm_rra 
-			|| pred == pscm_sa || pred == pscm_pb)
+	if (mv == pscm_sb || mv == pscm_rb || mv == pscm_rrb || mv == pscm_pa)
 		return (1);
 	return (0);
 }

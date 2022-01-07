@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/06 12:42:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/04 15:27:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int	check_next(long int next, int i, int *pre_stack)
 ** During this process, it check if there are duplicates, if it is confirmed
 ** write "Error\n" to stdout.
 **
-** When everything works fine, it store all the values into stack a and return
-** it.
+** When everything works fine, it store all the values into a int array and
+** return it.
 */
 
 int	*pse_try_parse_args(int argc, char **argv)

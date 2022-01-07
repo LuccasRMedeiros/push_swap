@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2021/12/16 22:44:23 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/06 16:31:11 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,10 @@ DEPS = -L libs/libft/ -lft \
 INCLUDES =	-I ./libs/libft/ \
 	  		-I ./includes/ \
 
-BASE =	add.c \
+BASE =	copy.c \
 		del_stack.c \
 		end_prog.c \
+		find_limits.c \
 		init_prog.c \
 		new_stack.c \
 		pop.c \
@@ -53,12 +54,15 @@ BASE =	add.c \
 MD_ERROR =	pse_check_args.c \
 			pse_try_parse_args.c \
 
-#MD_CORE =	psc_act.c \
-			psc_merge.c \
+MD_CORE =	psc_find_next_a.c \
+			psc_find_next_b.c \
+			psc_is_both_mv.c \
+			psc_is_stack_a_mv.c \
+			psc_is_stack_b_mv.c \
 			psc_observe.c \
 			psc_predict.c \
 
-#MD_CORE_MOVES =	pscm_pa.c \
+MD_CORE_MOVES =	pscm_pa.c \
 				pscm_pb.c \
 				pscm_ra.c \
 				pscm_rb.c \
@@ -70,13 +74,10 @@ MD_ERROR =	pse_check_args.c \
 				pscm_sb.c \
 				pscm_ss.c \
 
-#MD_CORE_MOVES_UTILS =	pscmu_update_limits.c \
-
 SRC =	$(BASE) \
 		$(MD_ERROR) \
-#		$(MD_CORE) \
-#		$(MD_CORE_MOVES) \
-#		$(MD_CORE_MOVES_UTILS) \
+		$(MD_CORE) \
+		$(MD_CORE_MOVES) \
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -84,13 +85,12 @@ SRC_FULL =	$(addprefix ./src/, $(BASE)) \
 			$(addprefix ./error/, $(MD_ERROR)) \
 			$(addprefix ./core/, $(MD_CORE)) \
 			$(addprefix ./core/moves/, $(MD_CORE_MOVES)) \
-			$(addprefix ./core/moves/utils/, $(MD_CORE_MOVES_UTILS)) \
 
 all: makelibft $(NAME)
 	echo "$$PUSHSWAP"
 
 $(NAME): $(OBJ)
-	#$(CC) $(FLAGS) $(SANITIZERS) $(INCLUDES) push_swap.c -o $(NAME) $(OBJ) $(DEPS)
+	$(CC) $(FLAGS) $(SANITIZERS) $(INCLUDES) push_swap.c -o $(NAME) $(OBJ) $(DEPS)
 
 $(OBJ): $(SRC_FULL)
 	$(CC) $(FLAGS) $(SANITIZERS) $(INCLUDES) -c $(SRC_FULL)

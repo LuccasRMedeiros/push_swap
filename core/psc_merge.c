@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:33:27 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/07 22:37:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:05:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,9 @@ static void	organize(t_prog *prog)
 
 static int	search(t_prog *prog)
 {
-	t_dlist	*stack_a;
-	int		best;
-	int		loc;
-	int		place;
+	t_stack	*a;
 
-	stack_a = prog->stack_a;
+	a = prog->stack_a;
 	best = prog->limits_a[g];
 	if (best < *(int *)prog->stack_b->content)
 		best = prog->limits_a[l];

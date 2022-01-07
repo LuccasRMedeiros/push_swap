@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/05 22:04:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/06 22:53:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@ void	pscm_pb(t_prog **prog)
 	t_prog	*aux;
 
 	aux = *prog;
-	if (aux->stack_b->content)
-	{
-		ft_dlstadd_circle(aux->stack_a->content, &aux->stack_b);
-		aux->stack_b = aux->stack_b->prev;
-	}
-	else
-		aux->stack_b->content = aux->stack_a->content;
-	aux->stack_a = ft_dlstpop_circle(aux->stack_a);
+	aux->stack_b = copy(aux->stack_a, aux->stack_b);
+	aux->stack_a = pop(aux->stack_a);
+	if (!aux->stack_b->next->rank)
+		aux->stack_b = pop(aux->stack_b->next);
 	aux->a_size -= 1;
 	aux->b_size += 1;
-	pscmu_update_limits(aux);
+	find_limits(aux->stack_a, aux->lts_a, aux->a_size);
+	find_limits(aux->stack_b, aux->lts_b, aux->b_size);
 	ft_putendl_fd("pb", 1);
 }

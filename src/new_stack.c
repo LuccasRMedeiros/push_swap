@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 14:33:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/14 00:29:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/03 23:41:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Recursively create all the asked nodes of the stack.
 */
 
-static t_stack	*create_nodes(size_t n_nodes, size_t pos, t_stack *prev)
+static t_stack	*create_nodes(size_t n_nodes, t_stack *prev)
 {
 	t_stack	*new;
 
@@ -24,12 +24,11 @@ static t_stack	*create_nodes(size_t n_nodes, size_t pos, t_stack *prev)
 	if (!new)
 		return (NULL);
 	new->item = 0;
-	new->pos = pos;
 	new->rank = 0;
 	new->prev = prev;
 	if (n_nodes > 1)
 	{
-		new->next = create_nodes(n_nodes - 1, pos + 1, new);
+		new->next = create_nodes(n_nodes - 1, new);
 		if (!new->next)
 		{
 			free(new);
@@ -40,22 +39,27 @@ static t_stack	*create_nodes(size_t n_nodes, size_t pos, t_stack *prev)
 }
 
 /*
-** Create a new t_stack with the amount of nodes informed, create a circular
-** reference and return the new stack.
+** Create a new t_stack with the amount of nodes informed, circle it and return
+** the new stack.
 */
 
 t_stack	*new_stack(size_t n_nodes)
 {
 	t_stack	*new;
+	size_t	i;
 	t_stack	*head;
 	t_stack	*tail;
 
-	new = create_nodes(n_nodes, 1, NULL);
+	new = create_nodes(n_nodes, NULL);
 	if (!new)
 		return (NULL);
+	i = 0;
 	head = new;
-	while (new->pos != n_nodes)
+	while (i < n_nodes - 1)
+	{
 		new = new->next;
+		++i;
+	}
 	tail = new;
 	tail->next = head;
 	head->prev = tail;
