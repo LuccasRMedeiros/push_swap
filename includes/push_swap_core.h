@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:01:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 20:53:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:58:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int		psc_is_stack_b_mv(t_act *mv);
 int		psc_is_both_mv(t_act *mv);
 void	psc_merge(t_prog *prog);
 void	psc_observe(t_prog *prog, int obs[2][2]);
-void	psc_predict(t_prog *p, t_act *preds[3]);
+void	psc_predict(t_prog *p, t_act *preds[5], int obs[2][2]);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:33:27 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/07 16:33:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 22:43:26 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core.h>
 
 /*
-** Rotate stack_a till all the items be correctly placed.
+** Rotate stack A till all the items be correctly placed.
 */
 
 static void	organize(t_prog *prog)
@@ -56,7 +56,8 @@ static int	search(t_prog *prog)
 	a = prog->stack_a;
 	b = prog->stack_b;
 	dist = 0;
-	while (b->rank - a->prev->rank != 1 && a->rank - b->rank != 1)
+	while (b->rank - a->prev->rank != 1 && a->rank - b->rank != 1
+			&& dist != prog->a_size)
 	{
 		++dist;
 		a = a->next;

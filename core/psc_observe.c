@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:04:59 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/07 15:29:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:51:31 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ static void	observe_a(t_prog *prog, int obs[2])
 
 void psc_observe(t_prog *prog, int obs[2][2])
 {
+	obs[a][d] = 0;
+	obs[a][u] = 0;
+	obs[b][d] = 0;
+	obs[b][u] = 0;
 	if (prog->a_size > 2)
 		observe_a(prog, obs[a]);
 	if (prog->b_size > 2)

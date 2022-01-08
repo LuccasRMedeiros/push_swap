@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/07 16:28:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 00:13:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,27 @@
 ** will exit itself letting the program to finish.
 */
 
-void	sort(t_prog *prog, t_act *preds[3])
+void	sort(t_prog *prog, t_act *preds[5])
 {
 	size_t	act;
+	int	obs[2][2];
 
 	act = 0;
-	psc_predict(prog, preds);
+	psc_observe(prog, obs);
+	psc_predict(prog, preds, obs);
 	if (!preds[act1] && !preds[act2] && !preds[await])
 	{
 		psc_merge(prog);
-		return ;
+		psc_observe(prog, obs);
+		if (obs[a][d] == prog->a_size && obs[b][u] == prog->b_size)
+			return ;
 	}
 	while (act < await)
 	{
 		if (preds[act])
 		{
 			preds[act](&prog);
+			preds[act + 3] = preds[act];
 			preds[act] = NULL;
 		}
 		++act;
@@ -57,7 +62,7 @@ void	sort(t_prog *prog, t_act *preds[3])
 
 int	main(int argc, char **argv)
 {
-	t_act	*acts[3];
+	t_act	*acts[5];
 	int		*pre_stack;
 	t_prog	*prog;
 
@@ -66,6 +71,8 @@ int	main(int argc, char **argv)
 	acts[act1] = NULL;
 	acts[act2] = NULL;
 	acts[await] = NULL;
+	acts[3] = NULL;
+	acts[4] = NULL;
 	pse_check_args(argv);
 	pre_stack = pse_try_parse_args(argc, argv);
 	prog = init_prog(argc - 1, pre_stack);

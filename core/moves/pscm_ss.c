@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/04 22:06:04 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/07 20:55:58 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	pscm_ss(t_prog **prog)
 	old_top_a = aux->stack_a->item;
 	old_rank_a = aux->stack_a->rank;
 	old_top_b = aux->stack_b->item;
-	old_rank_b = aux->stack_a->rank;
+	old_rank_b = aux->stack_b->rank;
 	aux->stack_a->item = aux->stack_a->next->item;
 	aux->stack_a->rank = aux->stack_a->next->rank;
 	aux->stack_b->item = aux->stack_b->next->item;
