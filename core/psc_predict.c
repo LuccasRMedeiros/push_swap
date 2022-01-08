@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:38:50 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 00:24:15 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 09:55:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,19 @@ static void	refine(t_act *preds[5], int obs[2][2])
 
 static t_act	*predict_b(t_prog *prog, int obs[2])
 {
-	int	limit;
+	int	threshold;
 	int	ds[3];
 
-	limit = prog->b_size / 4;
-	if (limit < 2)
-		limit = 2;
+	threshold = prog->total_items / 4;
+	if (threshold < 2)
+		threshold = 2;
 	ds[t] = psc_find_next_b(prog->stack_b, prog->lts_b, prog->b_size);
 	ds[n] = psc_find_next_b(prog->stack_b->next, prog->lts_b, prog->b_size);
 	ds[p] = psc_find_next_b(prog->stack_b->prev, prog->lts_b, prog->b_size);
-	if (ds[t] >= 1 && ds[t] <= limit && ds[n] != 1)
+	if (ds[t] >= 1 && ds[t] <= threshold && ds[n] != 1 && ds[p] > 0)
 		return (pscm_sb);
 	else if (prog->stack_b->next->rank - prog->stack_a->rank == 1)
 		return (pscm_sb);
-	// else if (prog->stack_b->rank - prog->stack_a->prev->rank == 1)
-	// 	return (pscm_pa);
-	else if (ds[n] < ds[p] && ds[n] >= 1 && ds[p] >= 1)
-		return (pscm_rb);
-	else if (ds[p] < ds[n] && ds[p] >= 1 && ds[p] >= 1)
-		return (pscm_rrb);
 	else if (obs[d] <= obs[u] && obs[d] < prog->b_size)
 		return (pscm_rb);
 	else if (obs[u] < obs[d])
@@ -112,25 +106,21 @@ static t_act	*predict_b(t_prog *prog, int obs[2])
 
 static t_act	*predict_a(t_prog *prog, int obs[2])
 {
-	int	limit;
+	int	threshold;
 	int	ds[3];
 
-	limit = prog->a_size / 4;
-	if (limit < 2)
-		limit = 2;
+	threshold = prog->total_items / 4;
+	if (threshold < 2)
+		threshold = 2;
 	ds[t] = psc_find_next_a(prog->stack_a, prog->lts_a, prog->a_size);
 	ds[n] = psc_find_next_a(prog->stack_a->next, prog->lts_a, prog->a_size);
 	ds[p] = psc_find_next_a(prog->stack_a->prev, prog->lts_a, prog->a_size);
-	if (ds[t] >= 1 && ds[t] <= limit && ds[n] != 1)
+	if (ds[t] >= 1 && ds[t] <= threshold && ds[n] != 1 && ds[p] > 0)
 		return (pscm_sa);
 	else if (prog->stack_a->rank - prog->stack_a->next->rank == 1)
 		return (pscm_sa);
 	else if (prog->stack_a->rank > (size_t)prog->total_items / 2)
 		return (pscm_pb);
-	else if (ds[n] < ds[p] && ds[n] >= 1 && ds[p] >= 1)
-		return (pscm_ra);
-	else if (ds[p] < ds[n] && ds[p] >= 1 && ds[n] >= 1)
-		return (pscm_rra);
 	else if (obs[d] <= obs[u] && obs[d] < prog->a_size)
 		return (pscm_ra);
 	else if (obs[u] < obs[d])

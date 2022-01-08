@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:01:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/07 23:58:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 10:27:58 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 
 # include "push_swap_core_moves.h"
 
-int		psc_find_next_a(t_stack *a, size_t lts[2], size_t a_size);
-int		psc_find_next_b(t_stack *b, size_t lts[2], size_t b_size);
+int		psc_find_next(
+			t_stack *stk,
+			t_stack (*flow)(t_stack *),
+			int (*seq)(size_t, size_t));
 int		psc_is_stack_a_mv(t_act *mv);
 int		psc_is_stack_b_mv(t_act *mv);
 int		psc_is_both_mv(t_act *mv);

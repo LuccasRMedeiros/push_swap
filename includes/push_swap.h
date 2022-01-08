@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 22:48:16 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 10:24:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ enum	e_action
 	act1,
 	act2,
 	await,
+	hst1,
+	hst2,
 };
 
 /*

@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psc_find_next_a.c                                  :+:      :+:    :+:   */
+/*   psc_find_next.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:57:54 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 22:07:42 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 10:28:58 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core.h>
 
 /*
-** Count the distance between the top item on stack A and its ranked successor,
-** then return a int containing the result.
+** Count the distance between the item and its sucessor in the informed 
+** sequence.
 */
 
-int	psc_find_next_a(t_stack *a, size_t lts[2], size_t a_size)
+int	psc_find_next(
+		t_stack *stk,
+		t_stack (*flow)(t_stack *),
+		int (*seq)(size_t, size_t))
 {
 	int		dist;
 	size_t	this_rank;
-	size_t	node_n;
+	t_stack	*head;
 
 	dist = 0;
-	this_rank = a->rank;
-	a = a->next;
-	node_n = 2;
-	while (node_n <= a_size)
+	this_rank = stk->rank;
+	stk = flow(stk);
+	while (stk != head)
 	{
-		if ((a->rank - this_rank == 1)
-				|| (this_rank == lts[g] && a->rank == lts[l]))
+		if (seq(stk->rank, flow(stk)->rank) == 1)
 			return (dist);
 		++dist;
-		a = a->next;
+		stk = flow(stk);
 		++node_n;
 	}
 	return (dist);
