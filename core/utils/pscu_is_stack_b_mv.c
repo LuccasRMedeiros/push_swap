@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psc_is_stack_b_mv.c                                :+:      :+:    :+:   */
+/*   pscu_is_stack_b_mv.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:21:43 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 15:31:13 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 11:53:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** 0 case false.
 */
 
-int	psc_is_stack_b_mv(t_act *mv)
+int	pscu_is_stack_b_mv(t_act *mv)
 {
 	if (mv == pscm_sb || mv == pscm_rb || mv == pscm_rrb || mv == pscm_pa)
 		return (1);

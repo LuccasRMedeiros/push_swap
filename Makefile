@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2022/01/07 15:23:36 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/08 12:11:35 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,14 @@ MD_CORE_MOVES =	pscm_pa.c \
 				pscm_sa.c \
 				pscm_sb.c \
 				pscm_ss.c \
+
+MD_CORE_UTILS =	pscu_flow_next.c \
+				pscu_flow_prev.c \
+				pscu_higher_rank.c \
+				pscu_is_both_mv.c \
+				pscu_is_stack_a_mv.c \
+				pscu_is_stack_b_mv.c \
+				pscu_lower_rank.c \
 
 SRC =	$(BASE) \
 		$(MD_ERROR) \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psc_is_both_mv.c                                   :+:      :+:    :+:   */
+/*   pscu_is_both_mv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:23:07 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 15:31:13 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/08 11:53:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** true, 0 case false.
 */
 
-int	psc_is_both_mv(t_act *mv)
+int	pscu_is_both_mv(t_act *mv)
 {
 	if (mv == pscm_ss || mv == pscm_rr || mv == pscm_rrr)
 		return (1);

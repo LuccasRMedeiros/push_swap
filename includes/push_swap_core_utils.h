@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscu_is_stack_a_mv.c                               :+:      :+:    :+:   */
+/*   push_swap_core_utils.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/06 15:19:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 11:53:01 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/08 11:44:11 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/08 12:13:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_core.h>
-
 /*
-** See if a informed movement is part of stack A movements, return 1 case true,
-** 0 case false.
+** Helper for pus_swap_core functions.
 */
 
-int	pscu_is_stack_a_mv(t_act *mv)
-{
-	if (mv == pscm_sa || mv == pscm_ra || mv == pscm_rra || mv == pscm_pb)
-		return (1);
-	return (0);
-}
+#ifndef PUSH_SWAP_CORE_UTILS_H
+# define PUSH_SWAP_CORE_UTILS_H
+
+t_stack	*pscu_flow_next(t_stack *stk);
+t_stack	*pscu_flow_prev(t_stack *stk);
+int		pscu_higher_rank(size_t this_rank, size_t comp_rank);
+int		pscu_is_stack_a_mv(t_act *mv);
+int		pscu_is_stack_b_mv(t_act *mv);
+int		pscu_is_both_mv(t_act *mv);
+int		pscu_lower_rank(size_t this_rank, size_t comp_rank);
+
+#endif

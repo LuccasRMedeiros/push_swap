@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscu_is_stack_a_mv.c                               :+:      :+:    :+:   */
+/*   pscu_higher_rank.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/06 15:19:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 11:53:01 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/08 11:03:52 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/08 11:43:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_core.h>
+#include <push_swap_core_utils.h>
 
 /*
-** See if a informed movement is part of stack A movements, return 1 case true,
-** 0 case false.
+** Return the diference between the "comp" node rank and "this" node rank.
 */
 
-int	pscu_is_stack_a_mv(t_act *mv)
+int	pscu_lower_rank(size_t this_rank, size_t comp_rank)
 {
-	if (mv == pscm_sa || mv == pscm_ra || mv == pscm_rra || mv == pscm_pb)
-		return (1);
-	return (0);
+	return (comp_rank - this_rank);
 }
