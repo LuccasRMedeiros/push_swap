@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscu_higher_rank.c                                 :+:      :+:    :+:   */
+/*   pscu_fnxt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 11:03:52 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 11:43:13 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/08 10:54:24 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/09 23:54:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core_utils.h>
 
 /*
-** Return the diference between the "comp" node rank and "this" node rank.
+** Go to the next node.
 */
 
-int	pscu_lower_rank(size_t this_rank, size_t comp_rank)
+t_stack	*pscu_fnxt(t_stack *stk)
 {
-	return (comp_rank - this_rank);
+	return (stk->next);
 }

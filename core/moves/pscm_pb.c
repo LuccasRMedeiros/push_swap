@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/06 22:53:28 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/11 23:58:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ void	pscm_pb(t_prog **prog)
 		aux->stack_b = pop(aux->stack_b->next);
 	aux->a_size -= 1;
 	aux->b_size += 1;
-	find_limits(aux->stack_a, aux->lts_a, aux->a_size);
-	find_limits(aux->stack_b, aux->lts_b, aux->b_size);
 	ft_putendl_fd("pb", 1);
 }

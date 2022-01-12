@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 00:13:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/12 00:19:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,74 @@
 #include <push_swap_core.h>
 
 /*
-** Will predict what movements are the probably the best to sort.
+** The routine will observe the stack to decide which direction is better for a
+** eventual rotation, then it predicts the movements and execute them till the
+** stack be sorted.
 **
-** This routine is recursive and will only stop when psc_predict don't predict
-** nothing anymore. Note that this doesn't mean that all the numbers are placed
-** in their correct order, it is possible that the first number is at the middle
-** of the stack A, the stack B can still be holding some items, what actually
-** happens when psc_observe doesn't bring any problem is that all the items in 
-** both stacks are followed by its supposed sequence. 
+** It does this recursively and only stops when the observe confirms that 
+** everything was sorted. This prevent the program to try to sort a already 
+** sorted stack, did this happened due to a perfect sequence be informed or for
+** luck the stack be sorted after few attempts.
 **
-** Because of this is necessary to merge then (or just rotate the items on stack
-** A till the rank 1 be placed on top of the stack), only then the sort routine
-** will exit itself letting the program to finish.
+** During its execution, the decimal house is only updated when a merge happens
+** because this means that the sort for that decimal house has ended. The need
+** for a merge can be confirmed by obs[d] (d = 0) being equal to the size of 
+** stack A less 1, what means that psc_observe looked to all items on stack A
+** and no one is a candidate to go to stack B.
 */
 
-void	sort(t_prog *prog, t_act *preds[5])
+static void	sort(t_prog *prog, t_act *preds[5], unsigned int dch)
 {
-	size_t	act;
-	int	obs[2][2];
+	int		dists[2];
+	size_t	pd_i;
 
-	act = 0;
-	psc_observe(prog, obs);
-	psc_predict(prog, preds, obs);
-	if (!preds[act1] && !preds[act2] && !preds[await])
+	dists[d] = 0;
+	dists[u] = 0;
+	pd_i = 0;
+	psc_find_next(prog, dists, dch);
+	if (dists[d] == (int)prog->a_size - 1)
 	{
 		psc_merge(prog);
-		psc_observe(prog, obs);
-		if (obs[a][d] == prog->a_size && obs[b][u] == prog->b_size)
+		if (psc_observe(prog))
 			return ;
+		else
+			++dch;
 	}
-	while (act < await)
+	psc_predict(prog, preds, dists, dch);
+	while (pd_i <= act2)
 	{
-		if (preds[act])
+		if (preds[pd_i])
 		{
-			preds[act](&prog);
-			preds[act + 3] = preds[act];
-			preds[act] = NULL;
+			preds[pd_i](&prog);
+			preds[pd_i + 3] = preds[pd_i];
+			preds[pd_i] = NULL;
 		}
-		++act;
+		++pd_i;
 	}
-	sort(prog, preds);
+	sort(prog, preds, dch);
 }
 
 /*
-** Uses sort algorithm to create a set of push_swap instructions.
+** Uses radix sort algorithm to create a set of push_swap instructions.
 */
 
 int	main(int argc, char **argv)
 {
-	t_act	*acts[5];
+	t_act	*preds[5];
 	int		*pre_stack;
 	t_prog	*prog;
 
 	if (argc <= 1)
 		return (0);
-	acts[act1] = NULL;
-	acts[act2] = NULL;
-	acts[await] = NULL;
-	acts[3] = NULL;
-	acts[4] = NULL;
+	preds[act1] = NULL;
+	preds[act2] = NULL;
+	preds[await] = NULL;
+	preds[hst1] = NULL;
+	preds[hst1] = NULL;
 	pse_check_args(argv);
 	pre_stack = pse_try_parse_args(argc, argv);
 	prog = init_prog(argc - 1, pre_stack);
-	sort(prog, acts);
+	sort(prog, preds, 0);
 	end_prog(&prog);
 	return (0);
 }

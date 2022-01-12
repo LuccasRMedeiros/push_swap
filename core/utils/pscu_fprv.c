@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscm_pa.c                                          :+:      :+:    :+:   */
+/*   pscu_fprv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/11 23:57:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/08 10:54:24 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/09 23:54:16 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_core_moves.h>
+#include <push_swap_core_utils.h>
 
 /*
-** Push the top item on stack b to the top of stack a.
+** Go to the previous node.
 */
 
-void	pscm_pa(t_prog **prog)
+t_stack	*pscu_fprv(t_stack *stk)
 {
-	t_prog	*aux;
-
-	aux = *prog;
-	aux->stack_a = copy(aux->stack_b, aux->stack_a);
-	aux->stack_b = pop(aux->stack_b);
-	aux->a_size += 1;
-	aux->b_size -= 1;
-	ft_putendl_fd("pa", 1);
+	return (stk->prev);
 }

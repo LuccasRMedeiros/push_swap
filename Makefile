@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2022/01/08 12:11:35 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/12 00:03:33 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ INCLUDES =	-I ./libs/libft/ \
 BASE =	copy.c \
 		del_stack.c \
 		end_prog.c \
-		find_limits.c \
 		init_prog.c \
 		new_stack.c \
 		pop.c \
@@ -54,11 +53,7 @@ BASE =	copy.c \
 MD_ERROR =	pse_check_args.c \
 			pse_try_parse_args.c \
 
-MD_CORE =	psc_find_next_a.c \
-			psc_find_next_b.c \
-			psc_is_both_mv.c \
-			psc_is_stack_a_mv.c \
-			psc_is_stack_b_mv.c \
+MD_CORE =	psc_find_next.c \
 			psc_merge.c \
 			psc_observe.c \
 			psc_predict.c \
@@ -75,14 +70,6 @@ MD_CORE_MOVES =	pscm_pa.c \
 				pscm_sb.c \
 				pscm_ss.c \
 
-MD_CORE_UTILS =	pscu_flow_next.c \
-				pscu_flow_prev.c \
-				pscu_higher_rank.c \
-				pscu_is_both_mv.c \
-				pscu_is_stack_a_mv.c \
-				pscu_is_stack_b_mv.c \
-				pscu_lower_rank.c \
-
 SRC =	$(BASE) \
 		$(MD_ERROR) \
 		$(MD_CORE) \
@@ -94,6 +81,7 @@ SRC_FULL =	$(addprefix ./src/, $(BASE)) \
 			$(addprefix ./error/, $(MD_ERROR)) \
 			$(addprefix ./core/, $(MD_CORE)) \
 			$(addprefix ./core/moves/, $(MD_CORE_MOVES)) \
+			$(addprefix ./core/utils/, $(MD_CORE_UTILS)) \
 
 all: makelibft $(NAME)
 	echo "$$PUSHSWAP"

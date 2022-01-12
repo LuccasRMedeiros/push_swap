@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 14:33:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/03 23:41:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/09 23:32:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Recursively create all the asked nodes of the stack.
 */
 
-static t_stack	*create_nodes(size_t n_nodes, t_stack *prev)
+static t_stack	*create_nodes(unsigned int n_nodes, t_stack *prev)
 {
 	t_stack	*new;
 
@@ -43,10 +43,10 @@ static t_stack	*create_nodes(size_t n_nodes, t_stack *prev)
 ** the new stack.
 */
 
-t_stack	*new_stack(size_t n_nodes)
+t_stack	*new_stack(unsigned int n_nodes)
 {
 	t_stack	*new;
-	size_t	i;
+	unsigned int	i;
 	t_stack	*head;
 	t_stack	*tail;
 

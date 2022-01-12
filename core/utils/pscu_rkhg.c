@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscu_flow_next.c                                   :+:      :+:    :+:   */
+/*   pscu_rkhg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 10:54:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 12:12:22 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/08 11:03:52 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/09 23:53:57 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core_utils.h>
 
 /*
-** Go to the next node.
+** Return the diference between the "this" node rank and "comp" node rank.
 */
 
-t_stack	*pscu_flow_next(t_stack *stk)
+int	pscu_rkhg(unsigned int this_rank, unsigned int comp_rank)
 {
-	return (stk->next);
+	return (this_rank - comp_rank);
 }

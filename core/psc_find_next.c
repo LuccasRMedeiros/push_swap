@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:57:54 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/08 10:28:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/12 00:10:20 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,28 @@
 ** sequence.
 */
 
-int	psc_find_next(
-		t_stack *stk,
-		t_stack (*flow)(t_stack *),
-		int (*seq)(size_t, size_t))
+void	psc_find_next(t_prog *prog, int dists[2], unsigned int dch)
 {
-	int		dist;
-	size_t	this_rank;
-	t_stack	*head;
+	t_stack			*a;
+	unsigned int	node_n;
 
-	dist = 0;
-	this_rank = stk->rank;
-	stk = flow(stk);
-	while (stk != head)
+	a = prog->stack_a;
+	node_n = 1;
+	while (node_n <= prog->a_size)
 	{
-		if (seq(stk->rank, flow(stk)->rank) == 1)
-			return (dist);
-		++dist;
-		stk = flow(stk);
+		if (((a->rank >> dch) & 1) == 0)
+			break ;
+		dists[d] += 1;
+		a = a->next;
 		++node_n;
 	}
-	return (dist);
+	node_n = 1;
+	while (node_n <= prog->a_size)
+	{
+		if (((a->rank >> dch) & 1) == 0)
+			return ;
+		dists[u] += 1;
+		a = a->prev;
+		++node_n;
+	}
 }
