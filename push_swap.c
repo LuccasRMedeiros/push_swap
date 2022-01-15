@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/12 00:19:30 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/15 02:33:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,32 @@
 ** and no one is a candidate to go to stack B.
 */
 
-static void	sort(t_prog *prog, t_act *preds[5], unsigned int dch)
+static void	sort(t_prog *prog, t_stack *stk, t_act *mvs[3], int dch)
 {
-	int		dists[2];
-	size_t	pd_i;
+	int	is_b;
+	int	mv_n;
 
-	dists[d] = 0;
-	dists[u] = 0;
-	pd_i = 0;
-	psc_find_next(prog, dists, dch);
-	if (dists[d] == (int)prog->a_size - 1)
+	if (dch == prog->max_bits)
+		return ;
+	is_b = pscu_is_stack_b_mv(mvs[rotn]);
+	mv_n = prog->a_size + 1;
+	if (is_b)
+		mv_n = prog->b_size + 1;
+	dch += is_b;
+	while (pscu_find_next(stk, mv_n, dch) != is_b && --mv_n)
 	{
-		psc_merge(prog);
-		if (psc_observe(prog))
-			return ;
+		if (((stk->rank >> dch) & 1) == is_b)
+			mvs[push](&prog);
 		else
-			++dch;
+			mvs[rotn](&prog);
+		stk = prog->stack_a;
+		if (is_b)
+			stk = prog->stack_b;
 	}
-	psc_predict(prog, preds, dists, dch);
-	while (pd_i <= act2)
-	{
-		if (preds[pd_i])
-		{
-			preds[pd_i](&prog);
-			preds[pd_i + 3] = preds[pd_i];
-			preds[pd_i] = NULL;
-		}
-		++pd_i;
-	}
-	sort(prog, preds, dch);
+	while (--mv_n)
+		mvs[cred](&prog);
+	psc_invertmv(mvs);
+	sort(prog, pscu_selstack(prog, is_b), mvs, dch);
 }
 
 /*
@@ -67,21 +64,19 @@ static void	sort(t_prog *prog, t_act *preds[5], unsigned int dch)
 
 int	main(int argc, char **argv)
 {
-	t_act	*preds[5];
+	t_act	*mvs[3];
 	int		*pre_stack;
 	t_prog	*prog;
 
 	if (argc <= 1)
 		return (0);
-	preds[act1] = NULL;
-	preds[act2] = NULL;
-	preds[await] = NULL;
-	preds[hst1] = NULL;
-	preds[hst1] = NULL;
+	mvs[rotn] = pscm_ra;
+	mvs[push] = pscm_pb;
+	mvs[cred] = pscm_rra;
 	pse_check_args(argv);
 	pre_stack = pse_try_parse_args(argc, argv);
 	prog = init_prog(argc - 1, pre_stack);
-	sort(prog, preds, 0);
+	sort(prog, prog->stack_a, mvs, 0);
 	end_prog(&prog);
 	return (0);
 }

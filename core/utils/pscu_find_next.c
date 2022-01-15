@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_core_moves_utils.h                       :+:      :+:    :+:   */
+/*   psc_find_next.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/05 16:31:54 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/05 18:18:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/05 20:57:54 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/15 02:00:53 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap_core.h>
+
 /*
-** Helper to push_swap_core_move push functions.
+** Count the distance between the item and its sucessor in the informed 
+** sequence.
 */
 
-#ifndef PUSH_SWAP_CORE_MOVES_UTILS_H
-# define PUSH_SWAP_CORE_MOVES_UTILS_H
+int	pscu_find_next(t_stack *stk, unsigned int s, unsigned int dch)
+{
+	unsigned int	node_n;
 
-# include "push_swap.h"
-
-void	pscmu_update_limits(t_prog *prog);
-
-#endif
+	node_n = 1;
+	while (node_n <= s)
+	{
+		if (!((stk->rank >> dch) & 1))
+			return (1);
+		stk = stk->next;
+		++node_n;
+	}
+	return (0);
+}

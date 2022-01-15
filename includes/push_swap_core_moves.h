@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:03:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/12/05 18:18:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:23:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #ifndef PUSH_SWAP_CORE_MOVES_H
 # define PUSH_SWAP_CORE_MOVES_H
 
-# include "push_swap_core_moves_utils.h"
+# include "push_swap.h"
 
 void	pscm_pa(t_prog **prog);
 void	pscm_pb(t_prog **prog);

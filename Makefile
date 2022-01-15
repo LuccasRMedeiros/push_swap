@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2022/01/12 00:03:33 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/15 02:19:41 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,9 @@ BASE =	copy.c \
 MD_ERROR =	pse_check_args.c \
 			pse_try_parse_args.c \
 
-MD_CORE =	psc_find_next.c \
+MD_CORE =	psc_invertmv.c \
 			psc_merge.c \
 			psc_observe.c \
-			psc_predict.c \
 
 MD_CORE_MOVES =	pscm_pa.c \
 				pscm_pb.c \
@@ -70,10 +69,16 @@ MD_CORE_MOVES =	pscm_pa.c \
 				pscm_sb.c \
 				pscm_ss.c \
 
+MD_CORE_UTILS = pscu_find_next.c \
+				pscu_is_stack_a_mv.c \
+				pscu_is_stack_b_mv.c \
+				pscu_selstack.c \
+
 SRC =	$(BASE) \
 		$(MD_ERROR) \
 		$(MD_CORE) \
 		$(MD_CORE_MOVES) \
+		$(MD_CORE_UTILS) \
 
 OBJ = $(SRC:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/11 23:57:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 21:52:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	pscm_pa(t_prog **prog)
 	aux = *prog;
 	aux->stack_a = copy(aux->stack_b, aux->stack_a);
 	aux->stack_b = pop(aux->stack_b);
+	if (aux->stack_a->next->rank == -1)
+		aux->stack_a = pop(aux->stack_a->next);
 	aux->a_size += 1;
 	aux->b_size -= 1;
 	ft_putendl_fd("pa", 1);

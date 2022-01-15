@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/11 23:58:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 21:52:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	pscm_pb(t_prog **prog)
 	aux = *prog;
 	aux->stack_b = copy(aux->stack_a, aux->stack_b);
 	aux->stack_a = pop(aux->stack_a);
-	if (!aux->stack_b->next->rank)
+	if (aux->stack_b->next->rank == -1)
 		aux->stack_b = pop(aux->stack_b->next);
 	aux->a_size -= 1;
 	aux->b_size += 1;

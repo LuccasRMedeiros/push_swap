@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 14:33:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/09 23:32:28 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:18:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_stack	*create_nodes(unsigned int n_nodes, t_stack *prev)
 	if (!new)
 		return (NULL);
 	new->item = 0;
-	new->rank = 0;
+	new->rank = -1;
 	new->prev = prev;
 	if (n_nodes > 1)
 	{

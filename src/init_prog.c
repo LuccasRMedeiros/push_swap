@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:49:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/12 00:17:00 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:19:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	init_stack_a(t_stack *stack_a, int *pre_stack, int s)
 	while (i < (size_t)s)
 	{
 		stack_a->item = pre_stack[i];
-		stack_a->rank = 1;
+		stack_a->rank = 0;
 		stack_a = stack_a->next;
 		++i;
 	}

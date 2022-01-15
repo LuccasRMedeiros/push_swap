@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:42:50 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/07 16:10:14 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:56:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_stack	*pop(t_stack *src)
 	else
 	{
 		pop->item = 0;
-		pop->rank = 0;
+		pop->rank = -1;
 	}
 	return (src);
 }

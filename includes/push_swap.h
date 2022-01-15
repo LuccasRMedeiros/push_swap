@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/12 00:01:39 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/15 02:21:14 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,14 @@
 # include <libft.h>
 
 /*
-** Which index represent the direction of a imperfection.
-*/
-
-enum	e_dir
-{
-	d,
-	u,
-};
-
-/*
 ** Which index represent a action.
 */
 
 enum	e_action
 {
-	act1,
-	act2,
-	await,
-	hst1,
-	hst2,
+	rotn,
+	push,
+	cred,
 };
 
 /*
@@ -51,7 +39,7 @@ enum	e_action
 typedef struct	s_stack
 {
 	int				item;
-	unsigned int	rank;
+	int				rank;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
@@ -68,7 +56,7 @@ typedef struct	s_prog
 	unsigned int	a_size;
 	unsigned int	b_size;
 	unsigned int	max_rank;
-	unsigned int	max_bits;
+	int				max_bits;
 }	t_prog;
 
 /*

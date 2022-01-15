@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   psc_merge.c                                        :+:      :+:    :+:   */
+/*   pscu_selstack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 11:33:27 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/14 22:14:52 by lrocigno         ###   ########.fr       */
+/*   Created: 2022/01/15 02:12:45 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/15 02:18:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap_core.h>
+#include <push_swap_core_utils.h>
 
 /*
-** Place all the items on stack B on top of stack A and them organize stack A.
+** Return the other stack depending on value of is_b.
 */
 
-void	psc_merge(t_prog *prog)
+t_stack	*pscu_selstack(t_prog *prog, int is_b)
 {
-	while (prog->b_size)
-		pscm_pa(&prog);
+	if (is_b)
+		return (prog->stack_a);
+	return (prog->stack_b);
 }

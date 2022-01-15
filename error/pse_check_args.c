@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pse_check_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otakuocidental <otakuocidental@student.    +#+  +:+       +#+        */
+/*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:52:36 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/11/21 00:29:44 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/14 20:06:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	pse_check_args(char **argv)
 	{
 		while (argv[n][i])
 		{
-			if (!ft_isdigit(argv[n][i]))
+			if (!ft_isdigit(argv[n][i]) && argv[n][i] != '-')
 			{
 				ft_putstr_fd("Error\n", 1);
 				exit(0);
