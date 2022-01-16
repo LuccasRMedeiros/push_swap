@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 14:33:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/14 14:18:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 13:38:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static t_stack	*create_nodes(unsigned int n_nodes, t_stack *prev)
 
 t_stack	*new_stack(unsigned int n_nodes)
 {
-	t_stack	*new;
+	t_stack			*new;
 	unsigned int	i;
-	t_stack	*head;
-	t_stack	*tail;
+	t_stack			*head;
+	t_stack			*tail;
 
 	new = create_nodes(n_nodes, NULL);
 	if (!new)
