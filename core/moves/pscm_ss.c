@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/07 20:55:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/15 10:41:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Swap the two items at the top of both stacks.
 */
 
-void	pscm_ss(t_prog **prog)
+void	pscm_ss(t_prog **prog, t_stack **stk)
 {
 	t_prog	*aux;
 	int		old_top_a;
@@ -37,6 +37,7 @@ void	pscm_ss(t_prog **prog)
 	aux->stack_a->next->rank = old_rank_a;
 	aux->stack_b->next->item = old_top_b;
 	aux->stack_b->next->rank = old_rank_b;
+	*stk = aux->stack_a;
 	ft_putendl_fd("ss", 1);
 }
 

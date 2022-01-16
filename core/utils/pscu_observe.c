@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pscu_rklw.c                                        :+:      :+:    :+:   */
+/*   pscu_observe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 11:03:52 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/09 23:53:57 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/11/26 16:04:59 by lrocigno          #+#    #+#             */
+/*   Updated: 2022/01/15 22:33:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_core_utils.h>
 
 /*
-** Return the diference between the "comp" node rank and "this" node rank.
+** Look for misplaced items.
 */
 
-int	pscu_rklw(unsigned int this_rank, unsigned int comp_rank)
+int	pscu_observe(t_prog *prog)
 {
-	return (comp_rank - this_rank);
+	t_stack			*a;
+	unsigned int	node_n;
+
+	a = prog->stack_a;
+	node_n = 1;
+	while (node_n < prog->a_size)
+	{
+		if (a->rank > a->next->rank)
+			return (1);
+		a = a->next;
+		++node_n;
+	}
+	return (0);
 }

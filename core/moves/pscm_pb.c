@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 21:52:10 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/14 21:52:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/15 11:54:39 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Push the top item on stack a to the top of stack b.
 */
 
-void	pscm_pb(t_prog **prog)
+void	pscm_pb(t_prog **prog, t_stack **stk)
 {
 	t_prog	*aux;
 
@@ -25,6 +25,7 @@ void	pscm_pb(t_prog **prog)
 	aux->stack_a = pop(aux->stack_a);
 	if (aux->stack_b->next->rank == -1)
 		aux->stack_b = pop(aux->stack_b->next);
+	*stk = aux->stack_a;
 	aux->a_size -= 1;
 	aux->b_size += 1;
 	ft_putendl_fd("pb", 1);

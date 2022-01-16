@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/15 02:21:14 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/15 10:49:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct	s_prog
 ** type that receives a pointer to pointer to t_prog.
 */
 
-typedef	void	(t_act)(t_prog **prog);
+typedef	void	(t_act)(t_prog **prog, t_stack **stk);
 
 /*
 ** Functions for mainly initialization and destruction of structures objects.
