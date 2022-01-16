@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:01:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/15 21:28:31 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:29:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 
 void	psc_merge(t_prog *prog);
 void	psc_de_radixsort(t_prog *prog);
-void	psc_tournamentsort(t_prog *prog);
+void	psc_simplesort(t_prog *prog);
 
 #endif

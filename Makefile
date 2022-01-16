@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2022/01/16 11:35:41 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/16 18:30:09 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ MD_ERROR =	pse_check_args.c \
 
 MD_CORE =	psc_merge.c \
 			psc_de_radixsort.c \
-			psc_tournamentsort.c \
+			psc_simplesort.c \
 
 MD_CORE_MOVES =	pscm_pa.c \
 				pscm_pb.c \
