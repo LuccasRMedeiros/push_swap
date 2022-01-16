@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:05:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/15 10:41:19 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:11:12 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ void	pscm_sb(t_prog **prog, t_stack **stk)
 	*stk = aux->stack_b;
 	ft_putendl_fd("sb", 1);
 }
-

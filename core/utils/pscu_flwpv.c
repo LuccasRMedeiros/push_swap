@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 11:10:36 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 11:51:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:11:54 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Lambda function. Return if the next rank is lower than the actual.
 */
 
-	int	pscu_flwpv(t_stack *stk)
+int	pscu_flwpv(t_stack *stk)
 {
 	return (stk->next->rank > stk->rank);
 }

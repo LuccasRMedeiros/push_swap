@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:35:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 11:39:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:14:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ enum	e_action
 ** next and previous node but also carries it position in the tournament rank.
 */
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				item;
 	int				rank;
@@ -49,7 +49,7 @@ typedef struct	s_stack
 ** sort the stack.
 */
 
-typedef struct	s_prog
+typedef struct s_prog
 {
 	t_stack			*stack_a;
 	t_stack			*stack_b;

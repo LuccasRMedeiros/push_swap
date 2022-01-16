@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 20:25:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 12:00:07 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:09:25 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	de_radixsort(t_prog *prog, t_stack *stk, t_act *mvs[3], int dch)
 void	psc_de_radixsort(t_prog *prog)
 {
 	t_act	*mvs[3];
-	
+
 	if (!pscu_observe(prog->stack_a, pscu_flwnx))
 		return ;
 	mvs[rotn] = pscm_ra;

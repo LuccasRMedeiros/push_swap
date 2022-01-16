@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 16:04:59 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 11:42:20 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:12:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	pscu_observe(t_stack *stk, t_flow *flow)
 {
-	t_stack *head;
+	t_stack	*head;
 
 	head = stk;
 	while (stk->next != head)

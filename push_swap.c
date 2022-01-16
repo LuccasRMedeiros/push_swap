@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 12:00:37 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:07:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	prog = init_prog(argc - 1, pre_stack);
 	if (argc > 6)
 		psc_de_radixsort(prog);
-	else 
+	else
 		psc_tournamentsort(prog);
 	end_prog(&prog);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 20:50:14 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 12:00:05 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:10:26 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	tournamentsort(t_prog *prog)
 	if (!prog->b_size)
 		return ;
 	if (prog->stack_a->rank - prog->stack_b->rank == 1
-			|| (prog->stack_a->rank == 0 && prog->stack_b->rank == max_rank))
+		|| (prog->stack_a->rank == 0 && prog->stack_b->rank == max_rank))
 		pscm_pa(&prog, &dummy);
 	else if (prog->stack_a->rank - prog->stack_a->prev->rank == 1)
 		pscm_rra(&prog, &dummy);
@@ -57,9 +57,9 @@ void	psc_tournamentsort(t_prog *prog)
 	dir = pscm_ra;
 	while (pscu_observe(prog->stack_a, pscu_flwnx) && n < prog->max_rank)
 	{
-		if (prog->stack_a->rank % 2 == 0 
-				&& prog->stack_a->next->rank - prog->stack_a->rank != 1
-				&& prog->stack_a->rank - prog->stack_a->prev->rank != 1)
+		if (prog->stack_a->rank % 2 == 0
+			&& prog->stack_a->next->rank - prog->stack_a->rank != 1
+			&& prog->stack_a->rank - prog->stack_a->prev->rank != 1)
 			pscm_pb(&prog, &dummy);
 		else
 			pscm_ra(&prog, &dummy);
