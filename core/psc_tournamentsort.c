@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 20:50:14 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/15 22:30:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:00:05 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** it can easly sort a short stack.
 */
 
-void	tournamentsort(t_prog *prog)
+static void	tournamentsort(t_prog *prog)
 {
 	t_stack	*dummy;
 	int		max_rank;
@@ -55,7 +55,7 @@ void	psc_tournamentsort(t_prog *prog)
 	n = 0;
 	dummy = NULL;
 	dir = pscm_ra;
-	while (pscu_observe(prog) && n < prog->max_rank)
+	while (pscu_observe(prog->stack_a, pscu_flwnx) && n < prog->max_rank)
 	{
 		if (prog->stack_a->rank % 2 == 0 
 				&& prog->stack_a->next->rank - prog->stack_a->rank != 1

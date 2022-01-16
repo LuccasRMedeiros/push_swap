@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 20:25:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/15 22:13:40 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:00:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 ** correspond to box "0").
 */
 
-void	de_radixsort(t_prog *prog, t_stack *stk, t_act *mvs[3], int dch)
+static void	de_radixsort(t_prog *prog, t_stack *stk, t_act *mvs[3], int dch)
 {
-	int	is_b;
-	int	rots;
+	int		is_b;
+	int		rots;
 
 	if (dch == prog->max_bits)
 		return ;
@@ -58,7 +58,7 @@ void	psc_de_radixsort(t_prog *prog)
 {
 	t_act	*mvs[3];
 	
-	if (!pscu_observe(prog))
+	if (!pscu_observe(prog->stack_a, pscu_flwnx))
 		return ;
 	mvs[rotn] = pscm_ra;
 	mvs[push] = pscm_pb;

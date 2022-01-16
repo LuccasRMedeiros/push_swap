@@ -1,2 +1,4 @@
 *.o
 .vscode
+push_swap_testsuit/
+README.md

@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 10:30:55 by lrocigno          #+#    #+#              #
-#    Updated: 2022/01/15 22:07:31 by lrocigno         ###   ########.fr        #
+#    Updated: 2022/01/16 11:35:41 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,8 @@ MD_CORE_MOVES =	pscm_pa.c \
 
 MD_CORE_UTILS = pscu_calccred.c \
 				pscu_find_next.c \
+				pscu_flwnx.c \
+				pscu_flwpv.c \
 				pscu_invertmv.c \
 				pscu_is_stack_a_mv.c \
 				pscu_is_stack_b_mv.c \

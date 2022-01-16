@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:33:27 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/15 11:41:28 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/16 11:56:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	psc_merge(t_prog *prog)
 {
 	t_stack *dummy;
 
-	dummy = prog->stack_b;
+	dummy = NULL;
 	while (prog->b_size)
 		pscm_pa(&prog, &dummy);
+	while (prog->stack_a->rank != 0)
+		pscm_ra(&prog, &dummy);
 }
