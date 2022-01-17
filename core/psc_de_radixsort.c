@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 20:25:35 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 12:09:25 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/17 18:48:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,31 @@
 ** correspond to box "0").
 */
 
-static void	de_radixsort(t_prog *prog, t_stack *stk, t_act *mvs[3], int dch)
+static void	de_radixsort(t_prog *pg, t_stack *stk, t_act *mvs[3], int dch)
 {
 	int		is_b;
 	int		rots;
 
-	if (dch == prog->max_bits)
+	if (dch == pg->max_bits)
 		return ;
 	is_b = pscu_is_stack_b_mv(mvs[rotn]);
 	rots = 0;
 	dch += is_b;
-	while (pscu_find_next(prog, dch, is_b))
+	while (pscu_find_next(pg, dch, is_b))
 	{
 		if (((stk->rank >> dch) & 1) == is_b)
-			mvs[push](&prog, &stk);
+			mvs[push](&pg, &stk);
 		else
 		{
-			mvs[rotn](&prog, &stk);
+			mvs[rotn](&pg, &stk);
 			++rots;
 		}
 	}
-	rots = pscu_calccred(prog, mvs, rots, is_b);
+	rots = pscu_calccred(pg, mvs, rots, is_b);
 	while (--rots > -1)
-		mvs[cred](&prog, &stk);
+		mvs[cred](&pg, &stk);
 	pscu_invertmv(mvs);
-	de_radixsort(prog, pscu_selstack(prog, is_b), mvs, dch);
+	de_radixsort(pg, pscu_selstack(pg, is_b), mvs, dch);
 }
 
 /*
