@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/17 22:47:19 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:57:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@
 
 static int	check_next(long int item, int i, int *pre_stack)
 {
-	int		n;
+	int	n;
+	int	cmp;
 
 	n = 0;
+	cmp = 0;
 	while (n <= i)
 	{
-		if (item == pre_stack[n] || (item < INT_MIN || item > INT_MAX))
+		if (i)
+			cmp = pre_stack[n];
+		if ((item == cmp && i) || (item < INT_MIN || item > INT_MAX))
 		{
 			free(pre_stack);
 			pre_stack = NULL;
