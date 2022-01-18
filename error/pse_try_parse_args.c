@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/16 13:03:04 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/17 22:47:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_next(long int item, int i, int *pre_stack)
 	int		n;
 
 	n = 0;
-	while (n < i)
+	while (n <= i)
 	{
 		if (item == pre_stack[n] || (item < INT_MIN || item > INT_MAX))
 		{
@@ -52,7 +52,7 @@ int	*pse_try_parse_args(int argc, char **argv)
 	int			*pre_stack;
 	int			i;
 
-	pre_stack = ft_calloc(argc - 1, sizeof(int));
+	pre_stack = malloc(argc - 1 * sizeof(int));
 	if (!pre_stack)
 		exit(0);
 	i = 0;
