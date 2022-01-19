@@ -6,35 +6,45 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/17 22:57:34 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/18 23:08:16 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap_error.h>
 
 /*
-** Search for duplicates.
+** Test if a number is valid in the context of pse_try_parse_args.
 */
 
-static int	check_next(long int item, int i, int *pre_stack)
+static int	is_valid_number(long int item, size_t i, int *pre_stack)
 {
-	int	n;
-	int	cmp;
+	size_t	n;
 
 	n = 0;
-	cmp = 0;
-	while (n <= i)
+	if (item < INT_MIN || item > INT_MAX)
+		return (0);
+	while (n < i)
 	{
-		if (i)
-			cmp = pre_stack[n];
-		if ((item == cmp && i) || (item < INT_MIN || item > INT_MAX))
-		{
-			free(pre_stack);
-			pre_stack = NULL;
-			ft_putendl_fd("Error", 1);
-			exit(0);
-		}
+		if (item == pre_stack[n])
+			return (0);
 		++n;
+	}
+	return (1);
+}
+
+/*
+** See if there are duplicates ore values above or below the maximum and 
+** minimum value for integers.
+*/
+
+static int	check_next(long int item, size_t i, int *pre_stack)
+{
+	if (!is_valid_number(item, i, pre_stack))
+	{
+		free(pre_stack);
+		pre_stack = NULL;
+		ft_putendl_fd("Error", 1);
+		exit(0);
 	}
 	return (item);
 }
@@ -54,13 +64,13 @@ int	*pse_try_parse_args(int argc, char **argv)
 {
 	long int	item;
 	int			*pre_stack;
-	int			i;
+	size_t		i;
 
 	pre_stack = malloc(argc - 1 * sizeof(int));
 	if (!pre_stack)
 		exit(0);
 	i = 0;
-	while (i < argc - 1)
+	while (i < (size_t)argc - 1)
 	{
 		item = ft_atol(argv[i + 1]);
 		pre_stack[i] = check_next(item, i, pre_stack);
