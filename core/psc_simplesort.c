@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 20:50:14 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/18 16:40:40 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/19 11:03:49 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ void	psc_simplesort(t_prog *prog)
 		else if (a->rank == 2 && a->next->rank == 1)
 			pscm_sa(&prog, &a);
 		else if (a->rank == 3 || a->rank == 4)
+		{
 			pscm_pb(&prog, &a);
+			b = prog->stack_b;
+		}
 		else
 			pscm_ra(&prog, &a);
 	}
-	if (prog->stack_b->next->rank == 4 && prog->b_size > 1)
+	if (b->next->rank == 4 && prog->b_size > 1)
 		pscm_sb(&prog, &b);
 	psc_merge(prog);
 }
