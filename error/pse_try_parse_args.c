@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 23:39:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2022/01/18 23:08:16 by lrocigno         ###   ########.fr       */
+/*   Updated: 2022/01/18 23:23:58 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	*pse_try_parse_args(int argc, char **argv)
 	int			*pre_stack;
 	size_t		i;
 
-	pre_stack = malloc(argc - 1 * sizeof(int));
+	pre_stack = malloc(sizeof(int) * (argc - 1));
 	if (!pre_stack)
 		exit(0);
 	i = 0;
